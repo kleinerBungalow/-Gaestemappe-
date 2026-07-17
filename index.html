@@ -4,18 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digitale Gästemappe – Kleiner Bungalow</title>
-<meta name="description" content="Digitale Gästemappe für den Kleinen Bungalow: WLAN, Fernseher, Ausflugstipps, Beherbergungssteuer und Check-out auf einen Blick.">
+<meta name="description" content="Digitale Gästemappe für den Kleinen Bungalow: Anreise, WLAN, Fernseher, Mobilität, Karte, Ausflugstipps, Beherbergungssteuer und Check-out – auf Deutsch, Englisch und Niederländisch.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   :root{
---wald:#496A1C;
---blatt:#7F9D3A;
---salbei:#DCE7D2;
---holz:#6E5439;
---wasser:#567D93;
---sand:#F6F4ED;
+    --forest:#2c3a2a;
+    --forest-deep:#1c2519;
+    --sage:#7c8f6e;
+    --sand:#e9e0c9;
+    --linen:#f8f5ec;
+    --ochre:#b5792f;
+    --ink:#242821;
     --line:rgba(44,58,42,0.15);
   }
   *{box-sizing:border-box;}
@@ -42,6 +44,16 @@
   .eyebrow::before{content:""; width:24px; height:1px; background:var(--sand); display:inline-block;}
   header h1{color:#fff; font-size:clamp(1.9rem,4.5vw,2.7rem); max-width:16ch; margin-bottom:10px;}
   header p{max-width:48ch; color:#eee7d6; margin:0;}
+
+  /* Sprachumschalter */
+  .langbar{background:var(--forest-deep); border-bottom:1px solid rgba(255,255,255,.1);}
+  .langbar .wrap{display:flex; justify-content:flex-end; gap:6px; padding:8px 24px;}
+  .lang-btn{
+    font-family:'Work Sans', sans-serif; font-size:.78rem; font-weight:500; letter-spacing:.03em;
+    background:transparent; color:#b7c0a5; border:1px solid rgba(255,255,255,.2);
+    border-radius:14px; padding:4px 12px; cursor:pointer;
+  }
+  .lang-btn.active{background:var(--ochre); color:#fff; border-color:var(--ochre);}
 
   /* Quick nav */
   .quicknav{
@@ -122,6 +134,19 @@
   .callout p{color:#e3ddc8; margin:0;}
   .callout a{color:#fff; text-decoration:underline;}
 
+  /* Karte */
+  #map{
+    width:100%; height:360px; border-radius:2px; border:1px solid var(--line);
+    margin-top:16px; z-index:1;
+  }
+  .map-legend{list-style:none; margin:16px 0 0; padding:0; display:grid; gap:8px;}
+  .map-legend li{
+    display:flex; gap:10px; align-items:flex-start; font-size:.88rem; color:#3a4033;
+  }
+  .map-legend .dot{
+    flex:none; width:12px; height:12px; border-radius:50%; background:var(--ochre); margin-top:5px;
+  }
+
   footer{
     background:var(--forest-deep); color:#9fa88c; padding:26px 24px; font-size:.82rem; text-align:center;
   }
@@ -163,26 +188,36 @@
 
 <header>
   <div class="header-inner">
-    <div class="eyebrow">Digitale Gästemappe</div>
-    <h1>Willkommen im Kleinen Bungalow</h1>
-    <p>Alles, was du für deinen Aufenthalt wissen musst – von der Ankunft bis zur Abreise, an einem Ort gesammelt.</p>
+    <div class="eyebrow" data-i18n="header_eyebrow">Digitale Gästemappe</div>
+    <h1 data-i18n="header_title">Willkommen im Kleinen Bungalow</h1>
+    <p data-i18n="header_intro">Alles, was du für deinen Aufenthalt wissen musst – von der Ankunft bis zur Abreise, an einem Ort gesammelt.</p>
   </div>
 </header>
 
+<div class="langbar">
+  <div class="wrap">
+    <button class="lang-btn active" data-lang="de">DE</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="nl">NL</button>
+  </div>
+</div>
+
 <nav class="quicknav">
   <div class="wrap">
-    <a href="#anreise">Anreise</a>
-    <a href="#unterkunft">Unterkunft</a>
-    <a href="#wlan">WLAN</a>
-    <a href="#fernseher">Fernseher</a>
-    <a href="#technik">Haustechnik</a>
-    <a href="#muell">Mülltrennung</a>
-    <a href="#sicherheit">Sicherheit</a>
-    <a href="#einkaufen">Einkaufen</a>
-    <a href="#ausfluege">Ausflüge</a>
-    <a href="#steuer">Beherbergungssteuer</a>
-    <a href="#checkout">Check-out</a>
-    <a href="#kontakt">Kontakt</a>
+    <a href="#anreise" data-i18n="nav_anreise">Anreise</a>
+    <a href="#unterkunft" data-i18n="nav_unterkunft">Unterkunft</a>
+    <a href="#mobilitaet" data-i18n="nav_mobilitaet">Mobilität</a>
+    <a href="#wlan" data-i18n="nav_wlan">WLAN</a>
+    <a href="#fernseher" data-i18n="nav_fernseher">Fernseher</a>
+    <a href="#technik" data-i18n="nav_technik">Haustechnik</a>
+    <a href="#muell" data-i18n="nav_muell">Mülltrennung</a>
+    <a href="#sicherheit" data-i18n="nav_sicherheit">Sicherheit</a>
+    <a href="#einkaufen" data-i18n="nav_einkaufen">Einkaufen</a>
+    <a href="#karte" data-i18n="nav_karte">Karte</a>
+    <a href="#ausfluege" data-i18n="nav_ausfluege">Ausflüge</a>
+    <a href="#steuer" data-i18n="nav_steuer">Beherbergungssteuer</a>
+    <a href="#checkout" data-i18n="nav_checkout">Check-out</a>
+    <a href="#kontakt" data-i18n="nav_kontakt">Kontakt</a>
   </div>
 </nav>
 
@@ -191,14 +226,14 @@
   <div class="step" id="anreise">
     <div class="step-num">1</div>
     <div class="step-body">
-      <h2>Anreise &amp; Zugang</h2>
-      <p class="placeholder">[Wegbeschreibung einfügen, z. B. Anfahrt über die A1, letzte 500 m, Besonderheiten der Zufahrt]</p>
+      <h2 data-i18n="s1_title">Anreise &amp; Zugang</h2>
+      <p class="placeholder" data-i18n="s1_intro">[Wegbeschreibung einfügen, z. B. Anfahrt über die A1, letzte 500 m, Besonderheiten der Zufahrt]</p>
       <ul class="fact-list">
-        <li><span>Adresse</span><span>Hamsens Busch, 48167 Münster</span></li>
-        <li><span>Anreise mit dem Auto</span><span class="placeholder">[Hinweise einfügen]</span></li>
-        <li><span>Anreise mit ÖPNV</span><span class="placeholder">[Buslinie / Haltestelle einfügen]</span></li>
-        <li><span>Zugangscode / Schlüsselbox</span><span class="placeholder">[Code einfügen]</span></li>
-        <li><span>Ansprechpartner bei Anreise</span><span class="placeholder">[Name / Telefonnummer einfügen]</span></li>
+        <li><span data-i18n="s1_fl_adresse">Adresse</span><span>Hamsens Busch, 48167 Münster</span></li>
+        <li><span data-i18n="s1_fl_auto">Anreise mit dem Auto</span><span class="placeholder" data-i18n="s1_ph_auto">[Hinweise einfügen]</span></li>
+        <li><span data-i18n="s1_fl_oepnv">Anreise mit ÖPNV</span><span class="placeholder" data-i18n="s1_ph_oepnv">[Buslinie / Haltestelle einfügen]</span></li>
+        <li><span data-i18n="s1_fl_code">Zugangscode / Schlüsselbox</span><span class="placeholder" data-i18n="s1_ph_code">[Code einfügen]</span></li>
+        <li><span data-i18n="s1_fl_ansprechpartner">Ansprechpartner bei Anreise</span><span class="placeholder" data-i18n="s1_ph_ansprechpartner">[Name / Telefonnummer einfügen]</span></li>
       </ul>
     </div>
   </div>
@@ -206,152 +241,183 @@
   <div class="step" id="unterkunft">
     <div class="step-num">2</div>
     <div class="step-body">
-      <h2>Informationen zur Unterkunft</h2>
-      <p>Der Kleine Bungalow bietet 70&nbsp;m² für bis zu 4 Personen: Schlafzimmer, Wohnzimmer, Küche, Bad und ein eigener Gartenzugang über die Garage.</p>
+      <h2 data-i18n="s2_title">Informationen zur Unterkunft</h2>
+      <p data-i18n="s2_intro">Der Kleine Bungalow bietet 70&nbsp;m² für bis zu 4 Personen: Schlafzimmer, Wohnzimmer, Küche, Bad und ein eigener Gartenzugang über die Garage.</p>
       <ul class="fact-list">
-        <li><span>Check-in</span><span class="placeholder">[ab 15:00 Uhr einfügen]</span></li>
-        <li><span>Check-out</span><span class="placeholder">[bis 11:00 Uhr einfügen]</span></li>
-        <li><span>Schlüssel</span><span class="placeholder">[Übergabe / Schlüsselbox einfügen]</span></li>
-        <li><span>Parken</span><span class="placeholder">[Parkplatz-Info einfügen]</span></li>
-        <li><span>Haustiere</span><span class="placeholder">[Regelung einfügen]</span></li>
-        <li><span>Rauchen</span><span class="placeholder">nicht gestattet</span></li>
-        <li><span>Ruhezeiten</span><span class="placeholder">[z. B. ab 22:00 Uhr einfügen]</span></li>
-        <li><span>Reisebett &amp; Kinderhochstuhl</span><span>kostenlos, auf Anfrage</span></li>
+        <li><span data-i18n="s2_fl_checkin">Check-in</span><span class="placeholder" data-i18n="s2_ph_checkin">[ab 15:00 Uhr einfügen]</span></li>
+        <li><span data-i18n="s2_fl_checkout">Check-out</span><span class="placeholder" data-i18n="s2_ph_checkout">[bis 11:00 Uhr einfügen]</span></li>
+        <li><span data-i18n="s2_fl_schluessel">Schlüssel</span><span class="placeholder" data-i18n="s2_ph_schluessel">[Übergabe / Schlüsselbox einfügen]</span></li>
+        <li><span data-i18n="s2_fl_parken">Parken</span><span class="placeholder" data-i18n="s2_ph_parken">[Parkplatz-Info einfügen]</span></li>
+        <li><span data-i18n="s2_fl_haustiere">Haustiere</span><span class="placeholder" data-i18n="s2_ph_haustiere">[Regelung einfügen]</span></li>
+        <li><span data-i18n="s2_fl_rauchen">Rauchen</span><span class="placeholder" data-i18n="s2_ph_rauchen">nicht gestattet</span></li>
+        <li><span data-i18n="s2_fl_ruhezeiten">Ruhezeiten</span><span class="placeholder" data-i18n="s2_ph_ruhezeiten">[z. B. ab 22:00 Uhr einfügen]</span></li>
+        <li><span data-i18n="s2_fl_kinder">Reisebett &amp; Kinderhochstuhl</span><span data-i18n="s2_ph_kinder">kostenlos, auf Anfrage</span></li>
       </ul>
-      <div class="note-box">Der Bungalow grenzt an unser Wohnhaus – gelegentliche Kindergeräusche gehören dazu. Wir freuen uns, wenn du die familiäre Atmosphäre genießt.</div>
+      <div class="note-box" data-i18n="s2_note">Küche und Bad grenzen an unser Wohnhaus – gelegentliche Kindergeräusche gehören dazu. Wir freuen uns, wenn du die familiäre Atmosphäre genießt.</div>
+    </div>
+  </div>
+
+  <div class="step" id="mobilitaet">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h2 data-i18n="s3_title">Mobilität (Busverbindung, Fahrradverleih, Parkmöglichkeit)</h2>
+      <p data-i18n="s3_intro">So kommst du während deines Aufenthalts bequem von A nach B:</p>
+      <ul class="fact-list">
+        <li><span data-i18n="s3_fl_bus">Busverbindung</span><span class="placeholder" data-i18n="s3_ph_bus">[Buslinie, Haltestelle &amp; Taktung einfügen]</span></li>
+        <li><span data-i18n="s3_fl_rad">Fahrradverleih</span><span class="placeholder" data-i18n="s3_ph_rad">[Verleihstation &amp; Entfernung einfügen]</span></li>
+        <li><span data-i18n="s3_fl_park">Parkmöglichkeit</span><span class="placeholder" data-i18n="s3_ph_park">[Parkmöglichkeit einfügen]</span></li>
+        <li><span data-i18n="s3_fl_taxi">Taxi / Fahrdienst</span><span class="placeholder" data-i18n="s3_ph_taxi">[Telefonnummer einfügen]</span></li>
+      </ul>
     </div>
   </div>
 
   <div class="step" id="wlan">
-    <div class="step-num">3</div>
+    <div class="step-num">4</div>
     <div class="step-body">
-      <h2>WLAN</h2>
+      <h2 data-i18n="s4_title">WLAN</h2>
       <ul class="fact-list">
-        <li><span>Netzwerkname (SSID)</span><span class="placeholder">[Netzwerkname einfügen]</span></li>
-        <li><span>Passwort</span><span class="placeholder">[Passwort einfügen]</span></li>
+        <li><span data-i18n="s4_fl_ssid">Netzwerkname (SSID)</span><span class="placeholder" data-i18n="s4_ph_ssid">[Netzwerkname einfügen]</span></li>
+        <li><span data-i18n="s4_fl_pw">Passwort</span><span class="placeholder" data-i18n="s4_ph_pw">[Passwort einfügen]</span></li>
       </ul>
-      <p>Solltest du keine Verbindung bekommen: Router aus- und wieder einstecken hilft meistens. Bei Problemen einfach kurz melden.</p>
+      <p data-i18n="s4_text">Solltest du keine Verbindung bekommen: Router aus- und wieder einstecken hilft meistens. Bei Problemen einfach kurz melden.</p>
     </div>
   </div>
 
   <div class="step" id="fernseher">
-    <div class="step-num">4</div>
+    <div class="step-num">5</div>
     <div class="step-body">
-      <h2>Bedienung des Fernsehers</h2>
-      <p>So schaltest du den Fernseher ein und findest deinen Lieblingssender oder Streamingdienst:</p>
+      <h2 data-i18n="s5_title">Bedienung des Fernsehers</h2>
+      <p data-i18n="s5_intro">So schaltest du den Fernseher ein und findest deinen Lieblingssender oder Streamingdienst:</p>
       <details open>
-        <summary>Fernseher einschalten</summary>
+        <summary data-i18n="s5_d1_summary">Fernseher einschalten</summary>
         <div class="content">
           <ol>
-            <li>Mit der <strong>roten Power-Taste</strong> auf der Fernbedienung einschalten</li>
-            <li class="placeholder">[Modell-spezifische Schritte einfügen, z. B. Eingabequelle wählen]</li>
+            <li data-i18n="s5_d1_li1">Mit der roten Power-Taste auf der Fernbedienung einschalten</li>
+            <li class="placeholder" data-i18n="s5_d1_li2">[Modell-spezifische Schritte einfügen, z. B. Eingabequelle wählen]</li>
           </ol>
         </div>
       </details>
       <details>
-        <summary>Sender wechseln</summary>
+        <summary data-i18n="s5_d2_summary">Sender wechseln</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise zu Fernbedienung / Senderliste einfügen, z. B. Programm hoch/runter oder Zifferntasten]</p>
+          <p class="placeholder" data-i18n="s5_d2_text">[Hinweise zu Fernbedienung / Senderliste einfügen, z. B. Programm hoch/runter oder Zifferntasten]</p>
         </div>
       </details>
       <details>
-        <summary>Streaming (Netflix, YouTube &amp; Co.)</summary>
+        <summary data-i18n="s5_d3_summary">Streaming (Netflix, YouTube &amp; Co.)</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise einfügen, z. B. Home-Taste drücken → App auswählen → mit eigenem Account anmelden]</p>
+          <p class="placeholder" data-i18n="s5_d3_text">[Hinweise einfügen, z. B. Home-Taste drücken → App auswählen → mit eigenem Account anmelden]</p>
         </div>
       </details>
       <details>
-        <summary>Lautstärke &amp; Ausschalten</summary>
+        <summary data-i18n="s5_d4_summary">Lautstärke &amp; Ausschalten</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise einfügen, z. B. Lautstärketasten seitlich, Ausschalten über Power-Taste]</p>
+          <p class="placeholder" data-i18n="s5_d4_text">[Hinweise einfügen, z. B. Lautstärketasten seitlich, Ausschalten über Power-Taste]</p>
         </div>
       </details>
     </div>
   </div>
 
   <div class="step" id="technik">
-    <div class="step-num">5</div>
+    <div class="step-num">6</div>
     <div class="step-body">
-      <h2>Haustechnik</h2>
-      <p>Kurze Bedienhinweise für Heizung, Warmwasser und Küchengeräte:</p>
+      <h2 data-i18n="s6_title">Haustechnik</h2>
+      <p data-i18n="s6_intro">Kurze Bedienhinweise für Heizung, Warmwasser und Küchengeräte:</p>
       <details>
-        <summary>Heizung &amp; Thermostat</summary>
+        <summary data-i18n="s6_d1_summary">Heizung &amp; Thermostat</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise einfügen, z. B. Thermostat-Standort, empfohlene Temperatur, Fenster beim Heizen geschlossen halten]</p>
+          <p class="placeholder" data-i18n="s6_d1_text">[Hinweise einfügen, z. B. Thermostat-Standort, empfohlene Temperatur, Fenster beim Heizen geschlossen halten]</p>
         </div>
       </details>
       <details>
-        <summary>Warmwasser</summary>
+        <summary data-i18n="s6_d2_summary">Warmwasser</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise einfügen, z. B. Boiler-Standort, Aufheizzeit]</p>
+          <p class="placeholder" data-i18n="s6_d2_text">[Hinweise einfügen, z. B. Boiler-Standort, Aufheizzeit]</p>
         </div>
       </details>
       <details>
-        <summary>Kaffeemaschine</summary>
+        <summary data-i18n="s6_d3_summary">Kaffeemaschine</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise einfügen, z. B. Kapselsystem / Filterkaffee, Standort der Kapseln]</p>
+          <p class="placeholder" data-i18n="s6_d3_text">[Hinweise einfügen, z. B. Kapselsystem / Filterkaffee, Standort der Kapseln]</p>
         </div>
       </details>
       <details>
-        <summary>Waschmaschine &amp; Bügeleisen</summary>
+        <summary data-i18n="s6_d4_summary">Waschmaschine &amp; Bügeleisen</summary>
         <div class="content">
-          <p class="placeholder">[Hinweise einfügen, z. B. Verfügbarkeit, Standort, Waschmittel]</p>
+          <p class="placeholder" data-i18n="s6_d4_text">[Hinweise einfügen, z. B. Verfügbarkeit, Standort, Waschmittel]</p>
         </div>
       </details>
     </div>
   </div>
 
   <div class="step" id="muell">
-    <div class="step-num">6</div>
+    <div class="step-num">7</div>
     <div class="step-body">
-      <h2>Mülltrennung</h2>
+      <h2 data-i18n="s7_title">Mülltrennung</h2>
       <ul class="fact-list">
-        <li><span>Restmüll</span><span class="placeholder">[Standort Tonne einfügen]</span></li>
-        <li><span>Gelber Sack / Verpackungen</span><span class="placeholder">[Standort einfügen]</span></li>
-        <li><span>Papier</span><span class="placeholder">[Standort einfügen]</span></li>
-        <li><span>Glas</span><span class="placeholder">[Standort Container einfügen]</span></li>
+        <li><span data-i18n="s7_fl_rest">Restmüll</span><span class="placeholder" data-i18n="s7_ph_rest">[Standort Tonne einfügen]</span></li>
+        <li><span data-i18n="s7_fl_gelb">Gelber Sack / Verpackungen</span><span class="placeholder" data-i18n="s7_ph_gelb">[Standort einfügen]</span></li>
+        <li><span data-i18n="s7_fl_papier">Papier</span><span class="placeholder" data-i18n="s7_ph_papier">[Standort einfügen]</span></li>
+        <li><span data-i18n="s7_fl_glas">Glas</span><span class="placeholder" data-i18n="s7_ph_glas">[Standort Container einfügen]</span></li>
       </ul>
     </div>
   </div>
 
   <div class="step" id="sicherheit">
-    <div class="step-num">7</div>
+    <div class="step-num">8</div>
     <div class="step-body">
-      <h2>Sicherheit &amp; Notfälle</h2>
+      <h2 data-i18n="s8_title">Sicherheit &amp; Notfälle</h2>
       <ul class="fact-list">
-        <li><span>Rauchmelder</span><span class="placeholder">[Standort einfügen]</span></li>
-        <li><span>Erste-Hilfe-Kasten</span><span class="placeholder">[Standort einfügen]</span></li>
-        <li><span>Feuerlöscher</span><span class="placeholder">[Standort einfügen]</span></li>
-        <li><span>Nächste Apotheke</span><span class="placeholder">[Name / Adresse einfügen]</span></li>
-        <li><span>Nächstes Krankenhaus</span><span class="placeholder">[Name / Adresse einfügen]</span></li>
+        <li><span data-i18n="s8_fl_rauchmelder">Rauchmelder</span><span class="placeholder" data-i18n="s8_ph_rauchmelder">[Standort einfügen]</span></li>
+        <li><span data-i18n="s8_fl_erstehilfe">Erste-Hilfe-Kasten</span><span class="placeholder" data-i18n="s8_ph_erstehilfe">[Standort einfügen]</span></li>
+        <li><span data-i18n="s8_fl_feuerloescher">Feuerlöscher</span><span class="placeholder" data-i18n="s8_ph_feuerloescher">[Standort einfügen]</span></li>
+        <li><span data-i18n="s8_fl_apotheke">Nächste Apotheke</span><span class="placeholder" data-i18n="s8_ph_apotheke">[Name / Adresse einfügen]</span></li>
+        <li><span data-i18n="s8_fl_krankenhaus">Nächstes Krankenhaus</span><span class="placeholder" data-i18n="s8_ph_krankenhaus">[Name / Adresse einfügen]</span></li>
       </ul>
-      <div class="note-box">Notruf Feuerwehr &amp; Rettungsdienst: <strong>112</strong> · Polizei: <strong>110</strong> (deutschlandweit, kostenlos, auch ohne Guthaben erreichbar)</div>
+      <div class="note-box" data-i18n="s8_note">Notruf Feuerwehr &amp; Rettungsdienst: <strong>112</strong> · Polizei: <strong>110</strong> (deutschlandweit, kostenlos, auch ohne Guthaben erreichbar)</div>
     </div>
   </div>
 
   <div class="step" id="einkaufen">
-    <div class="step-num">8</div>
+    <div class="step-num">9</div>
     <div class="step-body">
-      <h2>Einkaufen &amp; Alltag in der Nähe</h2>
+      <h2 data-i18n="s9_title">Einkaufen &amp; Alltag in der Nähe</h2>
       <ul class="fact-list">
-        <li><span>Supermarkt</span><span class="placeholder">[Name / Entfernung einfügen]</span></li>
-        <li><span>Bäckerei</span><span class="placeholder">[Name / Entfernung einfügen]</span></li>
-        <li><span>Restaurant-Tipp</span><span class="placeholder">[Name / Entfernung einfügen]</span></li>
-        <li><span>Café-Tipp</span><span class="placeholder">[Name / Entfernung einfügen]</span></li>
+        <li><span data-i18n="s9_fl_supermarkt">Supermarkt</span><span class="placeholder" data-i18n="s9_ph_supermarkt">[Name / Entfernung einfügen]</span></li>
+        <li><span data-i18n="s9_fl_baeckerei">Bäckerei</span><span class="placeholder" data-i18n="s9_ph_baeckerei">[Name / Entfernung einfügen]</span></li>
+        <li><span data-i18n="s9_fl_restaurant">Restaurant-Tipp</span><span class="placeholder" data-i18n="s9_ph_restaurant">[Name / Entfernung einfügen]</span></li>
+        <li><span data-i18n="s9_fl_cafe">Café-Tipp</span><span class="placeholder" data-i18n="s9_ph_cafe">[Name / Entfernung einfügen]</span></li>
       </ul>
     </div>
   </div>
 
-  <div class="step" id="ausfluege">
-    <div class="step-num">9</div>
+  <div class="step" id="karte">
+    <div class="step-num">10</div>
     <div class="step-body">
-      <h2>Ausflugstipps in der Umgebung</h2>
-      <p>Die berühmte „100-Schlösser-Route" führt nur 100&nbsp;Meter am Bungalow vorbei – hier ein paar Ideen für jeden Geschmack:</p>
+      <h2 data-i18n="s10_title">Interaktive Karte mit Empfehlungen</h2>
+      <p data-i18n="s10_intro">Zoome und verschiebe die Karte, um unsere Lieblingsorte in der Umgebung zu entdecken. Ein Klick auf einen Punkt zeigt weitere Infos.</p>
+      <div id="map"></div>
+      <ul class="map-legend">
+        <li><span class="dot"></span><span><strong>Kleiner Bungalow</strong> – <span data-i18n="poi_bungalow_desc">Dein Zuhause auf Zeit</span></span></li>
+        <li><span class="dot"></span><span><strong>Wolbecker Tiergarten</strong> – <span data-i18n="poi_tiergarten_desc">Naherholungsgebiet mit Wegen entlang der Angel</span></span></li>
+        <li><span class="dot"></span><span><strong>Allwetterzoo Münster</strong> – <span data-i18n="poi_zoo_desc">Zoo mit Aquarium am Aasee</span></span></li>
+        <li><span class="dot"></span><span><strong>Mühlenhof-Freilichtmuseum</strong> – <span data-i18n="poi_muehlenhof_desc">Freilichtmuseum mit historischen Gebäuden</span></span></li>
+        <li><span class="dot"></span><span><strong>Münster Altstadt &amp; Dom</strong> – <span data-i18n="poi_dom_desc">Münsters historische Altstadt &amp; Dom</span></span></li>
+      </ul>
+      <p class="placeholder" data-i18n="s10_note" style="margin-top:12px; font-size:.85rem;">Tipp: Auf dem Smartphone lässt sich die Karte mit zwei Fingern zoomen.</p>
+    </div>
+  </div>
+
+  <div class="step" id="ausfluege">
+    <div class="step-num">11</div>
+    <div class="step-body">
+      <h2 data-i18n="s11_title">Ausflugstipps in der Umgebung</h2>
+      <p data-i18n="s11_intro">Die berühmte „100-Schlösser-Route" führt nur 100&nbsp;Meter am Bungalow vorbei – hier ein paar Ideen für jeden Geschmack:</p>
       <div class="tag-row" id="tagRow">
-        <button class="tag-btn active" data-target="paare">Paare</button>
-        <button class="tag-btn" data-target="familien">Familien</button>
-        <button class="tag-btn" data-target="wanderer">Wanderer</button>
-        <button class="tag-btn" data-target="radfahrer">Radfahrer</button>
+        <button class="tag-btn active" data-target="paare" data-i18n="tag_paare">Paare</button>
+        <button class="tag-btn" data-target="familien" data-i18n="tag_familien">Familien</button>
+        <button class="tag-btn" data-target="wanderer" data-i18n="tag_wanderer">Wanderer</button>
+        <button class="tag-btn" data-target="radfahrer" data-i18n="tag_radfahrer">Radfahrer</button>
       </div>
       <div class="activity-panel active" id="paare">
         <ul>
@@ -385,64 +451,81 @@
   </div>
 
   <div class="step" id="steuer">
-    <div class="step-num">10</div>
+    <div class="step-num">12</div>
     <div class="step-body">
-      <h2>Beherbergungssteuer</h2>
-      <p>Die Stadt Münster erhebt auf private Übernachtungen eine Beherbergungssteuer in Höhe von <strong>4,5&nbsp;% des Übernachtungspreises</strong>. Sie wird vor Ort abgerechnet und ist nicht in den ausgewiesenen Zimmerpreisen enthalten.</p>
+      <h2 data-i18n="s12_title">Beherbergungssteuer</h2>
+      <p data-i18n="s12_intro">Die Stadt Münster erhebt auf private Übernachtungen eine Beherbergungssteuer in Höhe von <strong>4,5&nbsp;% des Übernachtungspreises</strong>. Sie wird vor Ort abgerechnet und ist nicht in den ausgewiesenen Zimmerpreisen enthalten.</p>
       <details>
-        <summary>Wer zahlt die Steuer?</summary>
+        <summary data-i18n="s12_d1_summary">Wer zahlt die Steuer?</summary>
         <div class="content">
-          <p>Sie gilt für private, nicht geschäftlich veranlasste Übernachtungen. Bei nachweislich beruflichem Aufenthalt (z. B. Bestätigung des Arbeitgebers) kann eine Befreiung möglich sein – sprich uns bei Bedarf gerne an.</p>
+          <p data-i18n="s12_d1_text">Sie gilt für private, nicht geschäftlich veranlasste Übernachtungen. Bei nachweislich beruflichem Aufenthalt (z. B. Bestätigung des Arbeitgebers) kann eine Befreiung möglich sein – sprich uns bei Bedarf gerne an.</p>
         </div>
       </details>
       <details>
-        <summary>Wie wird sie berechnet?</summary>
+        <summary data-i18n="s12_d2_summary">Wie wird sie berechnet?</summary>
         <div class="content">
-          <p class="placeholder">Beispiel: 100 € Übernachtungspreis × 4,5 % = 4,50 € Beherbergungssteuer pro Nacht. [Bei Bedarf mit genauem Rechenbeispiel für den Aufenthalt ergänzen]</p>
+          <p class="placeholder" data-i18n="s12_d2_text">Beispiel: 100 € Übernachtungspreis × 4,5 % = 4,50 € Beherbergungssteuer pro Nacht. [Bei Bedarf mit genauem Rechenbeispiel für den Aufenthalt ergänzen]</p>
         </div>
       </details>
-      <div class="note-box">Die genaue Endabrechnung erhältst du beim Check-out.</div>
+      <div class="note-box" data-i18n="s12_note">Die genaue Endabrechnung erhältst du beim Check-out.</div>
     </div>
   </div>
 
   <div class="step" id="checkout">
-    <div class="step-num">11</div>
+    <div class="step-num">13</div>
     <div class="step-body">
-      <h2>Check-out</h2>
-      <p>Check-out ist bis <span class="placeholder">[Uhrzeit einfügen, z. B. 11:00 Uhr]</span>. Damit alles reibungslos läuft, bitten wir dich um Folgendes:</p>
+      <h2 data-i18n="s13_title">Check-out</h2>
+      <p data-i18n="s13_intro">Check-out ist bis [Uhrzeit einfügen, z. B. 11:00 Uhr]. Damit alles reibungslos läuft, bitten wir dich um Folgendes:</p>
       <details open>
-        <summary>Checkliste vor der Abreise</summary>
+        <summary data-i18n="s13_d1_summary">Checkliste vor der Abreise</summary>
         <div class="content">
           <ol>
-            <li>Geschirr spülen bzw. in die Spülmaschine räumen</li>
-            <li>Müll in die entsprechenden Tonnen bringen</li>
-            <li>Fenster und Türen schließen</li>
-            <li>Benutzte Handtücher <span class="placeholder">[Ablageort einfügen]</span> liegen lassen</li>
-            <li>Schlüssel <span class="placeholder">[Rückgabeort einfügen]</span></li>
+            <li data-i18n="s13_d1_li1">Geschirr spülen bzw. in die Spülmaschine räumen</li>
+            <li data-i18n="s13_d1_li2">Müll in die entsprechenden Tonnen bringen</li>
+            <li data-i18n="s13_d1_li3">Fenster und Türen schließen</li>
+            <li data-i18n="s13_d1_li4">Benutzte Handtücher [Ablageort einfügen] liegen lassen</li>
+            <li data-i18n="s13_d1_li5">Schlüssel [Rückgabeort einfügen]</li>
           </ol>
         </div>
       </details>
       <div class="callout">
-        <h3>Wie war dein Aufenthalt?</h3>
-        <p>Wir freuen uns immer über dein Feedback und eine ehrliche Bewertung – schreib uns gerne direkt oder hinterlasse eine Nachricht auf <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.</p>
+        <h3 data-i18n="s13_callout_title">Wie war dein Aufenthalt?</h3>
+        <p data-i18n="s13_callout_text">Wir freuen uns immer über dein Feedback und eine ehrliche Bewertung – schreib uns gerne direkt oder hinterlasse eine Nachricht auf <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.</p>
       </div>
     </div>
   </div>
 
   <div class="step" id="kontakt">
-    <div class="step-num">12</div>
+    <div class="step-num">14</div>
     <div class="step-body">
-      <h2>Kontakt &amp; Notfälle</h2>
+      <h2 data-i18n="s14_title">Kontakt &amp; Notfälle</h2>
       <ul class="fact-list">
-        <li><span>E-Mail</span><span><a href="mailto:info.haus.wagner@gmx.de">info.haus.wagner@gmx.de</a></span></li>
-        <li><span>Erreichbarkeit</span><span class="placeholder">[Telefonnummer / Zeiten einfügen]</span></li>
-        <li><span>Adresse</span><span>Hamsens Busch, 48167 Münster</span></li>
+        <li><span data-i18n="s14_fl_email">E-Mail</span><span><a href="mailto:info.haus.wagner@gmx.de">info.haus.wagner@gmx.de</a></span></li>
+        <li><span data-i18n="s14_fl_erreichbarkeit">Erreichbarkeit</span><span class="placeholder" data-i18n="s14_ph_erreichbarkeit">[Telefonnummer / Zeiten einfügen]</span></li>
+        <li><span data-i18n="s14_fl_adresse">Adresse</span><span>Hamsens Busch, 48167 Münster</span></li>
       </ul>
-      <p style="margin-top:14px;">Wir wünschen dir einen erholsamen Aufenthalt im Kleinen Bungalow!</p>
+      <p style="margin-top:14px;" data-i18n="s14_closing">Wir wünschen dir einen erholsamen Aufenthalt im Kleinen Bungalow!</p>
       <div class="note-box" style="margin-top:24px;">
-        <strong>
+        <strong>Hinweis für den Gastgeber:</strong> Diese Seite lässt sich direkt im Browser bearbeiten – ganz ohne Programmierkenntnisse. Rufe die Seite mit dem Zusatz <code>?edit=1</code> in der Adresszeile auf (z. B. <code>index.html?edit=1</code>), klicke unten rechts auf „Seite bearbeiten", ändere die Platzhalter-Texte direkt anklickend und lade die aktualisierte Datei über „Als Datei speichern" herunter. Anschließend die heruntergeladene Datei einfach im GitHub-Repo hochladen und die alte <code>index.html</code> damit überschreiben. Hinweis: Übersetzte Inhalte (EN/NL) musst du nach dem Ausfüllen der deutschen Platzhalter separat im Code ergänzen – dazu gerne bei Bedarf melden.
+      </div>
+    </div>
+  </div>
 
+</main>
+
+<footer data-i18n="footer_text">
+  Kleiner Bungalow – Gästehaus in Münster-Wolbeck
+</footer>
+
+<div class="edit-hint">Klicke auf einen Text, um ihn zu ändern – speichere anschließend die aktualisierte Datei.</div>
+<div class="edit-toolbar">
+  <button id="saveBtn" class="edit-btn">Als Datei speichern</button>
+  <button id="editToggle" class="edit-btn">Seite bearbeiten</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+  /* ---------- Aktivitäten-Reiter ---------- */
   const tagButtons = document.querySelectorAll('.tag-btn');
   const panels = document.querySelectorAll('.activity-panel');
   tagButtons.forEach(btn => {
@@ -454,14 +537,256 @@
     });
   });
 
-  // Bearbeitungsmodus: macht Textinhalte direkt im Browser editierbar
+  /* ---------- Interaktive Karte ---------- */
+  const map = L.map('map').setView([51.9270, 7.7280], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap-Mitwirkende',
+    maxZoom: 18
+  }).addTo(map);
+
+  const pois = [
+    { lat: 51.9270, lng: 7.7280, title: 'Kleiner Bungalow', desc: { de:'Dein Zuhause auf Zeit', en:'Your home away from home', nl:'Jouw tijdelijke thuis' } },
+    { lat: 51.9245, lng: 7.7420, title: 'Wolbecker Tiergarten', desc: { de:'Naherholungsgebiet mit Wegen entlang der Angel', en:'Local recreation area with paths along the Angel river', nl:'Recreatiegebied met paden langs de rivier de Angel' } },
+    { lat: 51.9430, lng: 7.6140, title: 'Allwetterzoo Münster', desc: { de:'Zoo mit Aquarium am Aasee', en:'Zoo with aquarium by the Aasee lake', nl:'Dierentuin met aquarium aan het Aasee-meer' } },
+    { lat: 51.9470, lng: 7.6100, title: 'Mühlenhof-Freilichtmuseum', desc: { de:'Freilichtmuseum mit historischen Gebäuden', en:'Open-air museum with historic buildings', nl:'Openluchtmuseum met historische gebouwen' } },
+    { lat: 51.9625, lng: 7.6256, title: 'Münster Altstadt & Dom', desc: { de:"Münsters historische Altstadt & Dom", en:"Münster's historic old town & cathedral", nl:'Historische binnenstad & kathedraal van Münster' } }
+  ];
+
+  let currentMapLang = 'de';
+  const markers = pois.map(poi => {
+    const m = L.marker([poi.lat, poi.lng]).addTo(map);
+    m.bindPopup(`<strong>${poi.title}</strong><br>${poi.desc[currentMapLang]}`);
+    return { marker: m, data: poi };
+  });
+
+  function updateMapLanguage(lang){
+    currentMapLang = lang;
+    markers.forEach(({marker, data}) => {
+      marker.setPopupContent(`<strong>${data.title}</strong><br>${data.desc[lang] || data.desc.de}`);
+    });
+  }
+
+  /* ---------- Übersetzungen ---------- */
+  const translations = {
+    en: {
+      header_eyebrow:"Digital Guest Guide", header_title:"Welcome to the Kleiner Bungalow",
+      header_intro:"Everything you need to know for your stay – from arrival to departure, all in one place.",
+      nav_anreise:"Arrival", nav_unterkunft:"Accommodation", nav_mobilitaet:"Getting Around", nav_wlan:"WiFi",
+      nav_fernseher:"TV", nav_technik:"House Facilities", nav_muell:"Waste Sorting", nav_sicherheit:"Safety",
+      nav_einkaufen:"Shopping", nav_karte:"Map", nav_ausfluege:"Activities", nav_steuer:"Accommodation Tax",
+      nav_checkout:"Check-out", nav_kontakt:"Contact",
+      s1_title:"Arrival & Access", s1_intro:"[Insert directions, e.g. via the A1 motorway, last 500 m, notes on the driveway]",
+      s1_fl_adresse:"Address", s1_fl_auto:"Arrival by car", s1_ph_auto:"[Insert notes]",
+      s1_fl_oepnv:"Arrival by public transport", s1_ph_oepnv:"[Insert bus line / stop]",
+      s1_fl_code:"Access code / key box", s1_ph_code:"[Insert code]",
+      s1_fl_ansprechpartner:"Contact person on arrival", s1_ph_ansprechpartner:"[Insert name / phone number]",
+      s2_title:"Accommodation Information",
+      s2_intro:"The Kleiner Bungalow offers 70 m² for up to 4 guests: bedroom, living room, kitchen, bathroom, and your own garden access via the garage.",
+      s2_fl_checkin:"Check-in", s2_ph_checkin:"[from 3:00 PM – insert]",
+      s2_fl_checkout:"Check-out", s2_ph_checkout:"[until 11:00 AM – insert]",
+      s2_fl_schluessel:"Key", s2_ph_schluessel:"[Insert handover / key box details]",
+      s2_fl_parken:"Parking", s2_ph_parken:"[Insert parking info]",
+      s2_fl_haustiere:"Pets", s2_ph_haustiere:"[Insert policy]",
+      s2_fl_rauchen:"Smoking", s2_ph_rauchen:"not permitted",
+      s2_fl_ruhezeiten:"Quiet hours", s2_ph_ruhezeiten:"[e.g. from 10:00 PM – insert]",
+      s2_fl_kinder:"Travel cot & high chair", s2_ph_kinder:"free of charge, on request",
+      s2_note:"The kitchen and bathroom border our own house – occasional noise from our kids is part of it. We hope you enjoy the family atmosphere.",
+      s3_title:"Getting Around (Bus Connections, Bike Rental, Parking)",
+      s3_intro:"Here's how to get around comfortably during your stay:",
+      s3_fl_bus:"Bus connection", s3_ph_bus:"[Insert bus line, stop & frequency]",
+      s3_fl_rad:"Bike rental", s3_ph_rad:"[Insert rental station & distance]",
+      s3_fl_park:"Parking", s3_ph_park:"[Insert parking option]",
+      s3_fl_taxi:"Taxi / ride service", s3_ph_taxi:"[Insert phone number]",
+      s4_title:"WiFi", s4_fl_ssid:"Network name (SSID)", s4_ph_ssid:"[Insert network name]",
+      s4_fl_pw:"Password", s4_ph_pw:"[Insert password]",
+      s4_text:"If you can't connect: unplugging and replugging the router usually helps. If problems persist, just let us know.",
+      s5_title:"Using the TV", s5_intro:"Here's how to turn on the TV and find your favourite channel or streaming service:",
+      s5_d1_summary:"Turning on the TV", s5_d1_li1:"Turn on using the red power button on the remote",
+      s5_d1_li2:"[Insert model-specific steps, e.g. selecting the input source]",
+      s5_d2_summary:"Changing channels", s5_d2_text:"[Insert remote/channel list notes, e.g. channel up/down or number keys]",
+      s5_d3_summary:"Streaming (Netflix, YouTube & more)", s5_d3_text:"[Insert notes, e.g. press Home button → select app → sign in with your own account]",
+      s5_d4_summary:"Volume & turning off", s5_d4_text:"[Insert notes, e.g. volume buttons on the side, turn off via power button]",
+      s6_title:"House Facilities", s6_intro:"Quick instructions for heating, hot water and kitchen appliances:",
+      s6_d1_summary:"Heating & thermostat", s6_d1_text:"[Insert notes, e.g. thermostat location, recommended temperature, keep windows closed while heating]",
+      s6_d2_summary:"Hot water", s6_d2_text:"[Insert notes, e.g. boiler location, heat-up time]",
+      s6_d3_summary:"Coffee machine", s6_d3_text:"[Insert notes, e.g. capsule system / filter coffee, location of capsules]",
+      s6_d4_summary:"Washing machine & iron", s6_d4_text:"[Insert notes, e.g. availability, location, detergent]",
+      s7_title:"Waste Sorting", s7_fl_rest:"General waste", s7_ph_rest:"[Insert bin location]",
+      s7_fl_gelb:"Recycling bag / packaging", s7_ph_gelb:"[Insert location]",
+      s7_fl_papier:"Paper", s7_ph_papier:"[Insert location]",
+      s7_fl_glas:"Glass", s7_ph_glas:"[Insert container location]",
+      s8_title:"Safety & Emergencies", s8_fl_rauchmelder:"Smoke detector", s8_ph_rauchmelder:"[Insert location]",
+      s8_fl_erstehilfe:"First aid kit", s8_ph_erstehilfe:"[Insert location]",
+      s8_fl_feuerloescher:"Fire extinguisher", s8_ph_feuerloescher:"[Insert location]",
+      s8_fl_apotheke:"Nearest pharmacy", s8_ph_apotheke:"[Insert name / address]",
+      s8_fl_krankenhaus:"Nearest hospital", s8_ph_krankenhaus:"[Insert name / address]",
+      s8_note:"Emergency – fire brigade &amp; ambulance: <strong>112</strong> · Police: <strong>110</strong> (nationwide, free, reachable even without credit)",
+      s9_title:"Shopping & Everyday Needs Nearby", s9_fl_supermarkt:"Supermarket", s9_ph_supermarkt:"[Insert name / distance]",
+      s9_fl_baeckerei:"Bakery", s9_ph_baeckerei:"[Insert name / distance]",
+      s9_fl_restaurant:"Restaurant tip", s9_ph_restaurant:"[Insert name / distance]",
+      s9_fl_cafe:"Café tip", s9_ph_cafe:"[Insert name / distance]",
+      s10_title:"Interactive Map with Recommendations",
+      s10_intro:"Zoom and pan the map to discover our favourite spots nearby. Click a pin for more details.",
+      s10_note:"Tip: on your phone, pinch with two fingers to zoom the map.",
+      poi_bungalow_desc:"Your home away from home", poi_tiergarten_desc:"Local recreation area with paths along the Angel river",
+      poi_zoo_desc:"Zoo with aquarium by the Aasee lake", poi_muehlenhof_desc:"Open-air museum with historic buildings",
+      poi_dom_desc:"Münster's historic old town & cathedral",
+      s11_title:"Excursion Tips Nearby",
+      s11_intro:"The famous \u201c100 Castles Route\u201d passes just 100 metres from the bungalow – here are a few ideas for every taste:",
+      tag_paare:"Couples", tag_familien:"Families", tag_wanderer:"Hikers", tag_radfahrer:"Cyclists",
+      s12_title:"Accommodation Tax",
+      s12_intro:"The City of Münster levies an accommodation tax of <strong>4.5% of the overnight rate</strong> on private stays. It is settled on site and is not included in the listed room rates.",
+      s12_d1_summary:"Who pays the tax?",
+      s12_d1_text:"It applies to private, non-business overnight stays. If your stay is verifiably for business purposes (e.g. employer confirmation), an exemption may be possible – just get in touch with us.",
+      s12_d2_summary:"How is it calculated?",
+      s12_d2_text:"Example: €100 overnight rate × 4.5% = €4.50 accommodation tax per night. [Add an exact calculation for the stay if needed]",
+      s12_note:"You'll receive the exact final invoice at check-out.",
+      s13_title:"Check-out",
+      s13_intro:"Check-out is until [insert time, e.g. 11:00 AM]. To make sure everything runs smoothly, we kindly ask you to:",
+      s13_d1_summary:"Checklist before departure",
+      s13_d1_li1:"Wash the dishes or put them in the dishwasher", s13_d1_li2:"Take the rubbish to the correct bins",
+      s13_d1_li3:"Close windows and doors", s13_d1_li4:"Leave used towels [insert location]",
+      s13_d1_li5:"Key [insert return location]",
+      s13_callout_title:"How was your stay?",
+      s13_callout_text:'We always appreciate your feedback and an honest review – feel free to message us directly or leave a note on <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.',
+      s14_title:"Contact & Emergencies", s14_fl_email:"Email",
+      s14_fl_erreichbarkeit:"Availability", s14_ph_erreichbarkeit:"[Insert phone number / times]",
+      s14_fl_adresse:"Address",
+      s14_closing:"We wish you a relaxing stay at the Kleiner Bungalow!",
+      footer_text:"Kleiner Bungalow – Guest house in Münster-Wolbeck"
+    },
+    nl: {
+      header_eyebrow:"Digitale Gastenmap", header_title:"Welkom in de Kleine Bungalow",
+      header_intro:"Alles wat je moet weten voor je verblijf – van aankomst tot vertrek, op één plek.",
+      nav_anreise:"Aankomst", nav_unterkunft:"Accommodatie", nav_mobilitaet:"Mobiliteit", nav_wlan:"WiFi",
+      nav_fernseher:"Televisie", nav_technik:"Huistechniek", nav_muell:"Afvalscheiding", nav_sicherheit:"Veiligheid",
+      nav_einkaufen:"Boodschappen", nav_karte:"Kaart", nav_ausfluege:"Uitjes", nav_steuer:"Toeristenbelasting",
+      nav_checkout:"Check-out", nav_kontakt:"Contact",
+      s1_title:"Aankomst & Toegang", s1_intro:"[Routebeschrijving invullen, bijv. via de A1, laatste 500 m, bijzonderheden oprit]",
+      s1_fl_adresse:"Adres", s1_fl_auto:"Aankomst met de auto", s1_ph_auto:"[Aanwijzingen invullen]",
+      s1_fl_oepnv:"Aankomst met openbaar vervoer", s1_ph_oepnv:"[Buslijn / halte invullen]",
+      s1_fl_code:"Toegangscode / sleutelkluis", s1_ph_code:"[Code invullen]",
+      s1_fl_ansprechpartner:"Contactpersoon bij aankomst", s1_ph_ansprechpartner:"[Naam / telefoonnummer invullen]",
+      s2_title:"Informatie over de accommodatie",
+      s2_intro:"De Kleine Bungalow biedt 70 m² voor maximaal 4 personen: slaapkamer, woonkamer, keuken, badkamer en een eigen tuintoegang via de garage.",
+      s2_fl_checkin:"Check-in", s2_ph_checkin:"[vanaf 15:00 uur invullen]",
+      s2_fl_checkout:"Check-out", s2_ph_checkout:"[tot 11:00 uur invullen]",
+      s2_fl_schluessel:"Sleutel", s2_ph_schluessel:"[Overdracht / sleutelkluis invullen]",
+      s2_fl_parken:"Parkeren", s2_ph_parken:"[Parkeerinfo invullen]",
+      s2_fl_haustiere:"Huisdieren", s2_ph_haustiere:"[Beleid invullen]",
+      s2_fl_rauchen:"Roken", s2_ph_rauchen:"niet toegestaan",
+      s2_fl_ruhezeiten:"Rusttijden", s2_ph_ruhezeiten:"[bijv. vanaf 22:00 uur invullen]",
+      s2_fl_kinder:"Reisbedje & kinderstoel", s2_ph_kinder:"gratis, op aanvraag",
+      s2_note:"Keuken en badkamer grenzen aan ons woonhuis – af en toe kindergeluiden horen erbij. We hopen dat je van de gezellige sfeer geniet.",
+      s3_title:"Mobiliteit (Bus, Fietsverhuur, Parkeren)",
+      s3_intro:"Zo kom je tijdens je verblijf gemakkelijk van A naar B:",
+      s3_fl_bus:"Busverbinding", s3_ph_bus:"[Buslijn, halte & frequentie invullen]",
+      s3_fl_rad:"Fietsverhuur", s3_ph_rad:"[Verhuurstation & afstand invullen]",
+      s3_fl_park:"Parkeermogelijkheid", s3_ph_park:"[Parkeermogelijkheid invullen]",
+      s3_fl_taxi:"Taxi / ritservice", s3_ph_taxi:"[Telefoonnummer invullen]",
+      s4_title:"WiFi", s4_fl_ssid:"Netwerknaam (SSID)", s4_ph_ssid:"[Netwerknaam invullen]",
+      s4_fl_pw:"Wachtwoord", s4_ph_pw:"[Wachtwoord invullen]",
+      s4_text:"Kun je geen verbinding maken? De router uit- en weer inpluggen helpt meestal. Bij problemen kun je ons altijd even laten weten.",
+      s5_title:"Bediening van de televisie", s5_intro:"Zo zet je de tv aan en vind je je favoriete zender of streamingdienst:",
+      s5_d1_summary:"Televisie inschakelen", s5_d1_li1:"Inschakelen met de rode aan/uit-knop op de afstandsbediening",
+      s5_d1_li2:"[Modelspecifieke stappen invullen, bijv. bron selecteren]",
+      s5_d2_summary:"Zender wisselen", s5_d2_text:"[Aanwijzingen afstandsbediening / zenderlijst invullen, bijv. kanaal omhoog/omlaag of cijfertoetsen]",
+      s5_d3_summary:"Streaming (Netflix, YouTube & meer)", s5_d3_text:"[Aanwijzingen invullen, bijv. Home-knop indrukken → app selecteren → inloggen met eigen account]",
+      s5_d4_summary:"Volume & uitschakelen", s5_d4_text:"[Aanwijzingen invullen, bijv. volumeknoppen aan de zijkant, uitschakelen via aan/uit-knop]",
+      s6_title:"Huistechniek", s6_intro:"Korte bedieningsinstructies voor verwarming, warm water en keukenapparatuur:",
+      s6_d1_summary:"Verwarming & thermostaat", s6_d1_text:"[Aanwijzingen invullen, bijv. locatie thermostaat, aanbevolen temperatuur, ramen dicht houden tijdens verwarmen]",
+      s6_d2_summary:"Warm water", s6_d2_text:"[Aanwijzingen invullen, bijv. locatie boiler, opwarmtijd]",
+      s6_d3_summary:"Koffiezetapparaat", s6_d3_text:"[Aanwijzingen invullen, bijv. capsulesysteem / filterkoffie, locatie capsules]",
+      s6_d4_summary:"Wasmachine & strijkijzer", s6_d4_text:"[Aanwijzingen invullen, bijv. beschikbaarheid, locatie, wasmiddel]",
+      s7_title:"Afvalscheiding", s7_fl_rest:"Restafval", s7_ph_rest:"[Locatie container invullen]",
+      s7_fl_gelb:"Verpakkingsafval", s7_ph_gelb:"[Locatie invullen]",
+      s7_fl_papier:"Papier", s7_ph_papier:"[Locatie invullen]",
+      s7_fl_glas:"Glas", s7_ph_glas:"[Locatie glasbak invullen]",
+      s8_title:"Veiligheid & noodgevallen", s8_fl_rauchmelder:"Rookmelder", s8_ph_rauchmelder:"[Locatie invullen]",
+      s8_fl_erstehilfe:"EHBO-kit", s8_ph_erstehilfe:"[Locatie invullen]",
+      s8_fl_feuerloescher:"Brandblusser", s8_ph_feuerloescher:"[Locatie invullen]",
+      s8_fl_apotheke:"Dichtstbijzijnde apotheek", s8_ph_apotheke:"[Naam / adres invullen]",
+      s8_fl_krankenhaus:"Dichtstbijzijnde ziekenhuis", s8_ph_krankenhaus:"[Naam / adres invullen]",
+      s8_note:"Noodnummer brandweer &amp; ambulance: <strong>112</strong> · Politie: <strong>110</strong> (landelijk, gratis, ook bereikbaar zonder beltegoed)",
+      s9_title:"Boodschappen & dagelijkse dingen in de buurt", s9_fl_supermarkt:"Supermarkt", s9_ph_supermarkt:"[Naam / afstand invullen]",
+      s9_fl_baeckerei:"Bakkerij", s9_ph_baeckerei:"[Naam / afstand invullen]",
+      s9_fl_restaurant:"Restauranttip", s9_ph_restaurant:"[Naam / afstand invullen]",
+      s9_fl_cafe:"Café-tip", s9_ph_cafe:"[Naam / afstand invullen]",
+      s10_title:"Interactieve kaart met aanbevelingen",
+      s10_intro:"Zoom en verschuif de kaart om onze favoriete plekken in de omgeving te ontdekken. Klik op een pin voor meer info.",
+      s10_note:"Tip: op je telefoon kun je met twee vingers in- en uitzoomen.",
+      poi_bungalow_desc:"Jouw tijdelijke thuis", poi_tiergarten_desc:"Recreatiegebied met paden langs de rivier de Angel",
+      poi_zoo_desc:"Dierentuin met aquarium aan het Aasee-meer", poi_muehlenhof_desc:"Openluchtmuseum met historische gebouwen",
+      poi_dom_desc:"Historische binnenstad & kathedraal van Münster",
+      s11_title:"Uitjes in de omgeving",
+      s11_intro:"De beroemde \u2018100-kastelenroute\u2019 loopt op maar 100 meter van de bungalow – hier een paar ideeën voor elk wat wils:",
+      tag_paare:"Stellen", tag_familien:"Gezinnen", tag_wanderer:"Wandelaars", tag_radfahrer:"Fietsers",
+      s12_title:"Toeristenbelasting",
+      s12_intro:"De stad Münster heft een toeristenbelasting van <strong>4,5% van de overnachtingsprijs</strong> op particuliere overnachtingen. Deze wordt ter plaatse afgerekend en is niet inbegrepen in de vermelde kamerprijzen.",
+      s12_d1_summary:"Wie betaalt de belasting?",
+      s12_d1_text:"Deze geldt voor particuliere, niet-zakelijke overnachtingen. Bij een aantoonbaar zakelijk verblijf (bijv. bevestiging van de werkgever) is vrijstelling mogelijk – neem gerust contact met ons op.",
+      s12_d2_summary:"Hoe wordt deze berekend?",
+      s12_d2_text:"Voorbeeld: € 100 overnachtingsprijs × 4,5% = € 4,50 toeristenbelasting per nacht. [Indien gewenst aanvullen met exact rekenvoorbeeld voor dit verblijf]",
+      s12_note:"De exacte eindafrekening ontvang je bij het uitchecken.",
+      s13_title:"Check-out",
+      s13_intro:"Check-out is tot [tijd invullen, bijv. 11:00 uur]. Om alles soepel te laten verlopen, vragen we je het volgende:",
+      s13_d1_summary:"Checklist voor vertrek",
+      s13_d1_li1:"Vaat afwassen of in de vaatwasser zetten", s13_d1_li2:"Afval naar de juiste containers brengen",
+      s13_d1_li3:"Ramen en deuren sluiten", s13_d1_li4:"Gebruikte handdoeken [locatie invullen] laten liggen",
+      s13_d1_li5:"Sleutel [inleverlocatie invullen]",
+      s13_callout_title:"Hoe was je verblijf?",
+      s13_callout_text:'We stellen je feedback en een eerlijke beoordeling altijd op prijs – stuur ons gerust een bericht of laat een berichtje achter op <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.',
+      s14_title:"Contact & noodgevallen", s14_fl_email:"E-mail",
+      s14_fl_erreichbarkeit:"Bereikbaarheid", s14_ph_erreichbarkeit:"[Telefoonnummer / tijden invullen]",
+      s14_fl_adresse:"Adres",
+      s14_closing:"We wensen je een heerlijk verblijf in de Kleine Bungalow!",
+      footer_text:"Kleine Bungalow – Gastenverblijf in Münster-Wolbeck"
+    }
+  };
+
+  const originalDE = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    originalDE[el.getAttribute('data-i18n') + '__' + Array.from(document.querySelectorAll('[data-i18n]')).indexOf(el)] = el.innerHTML;
+  });
+
+  function applyLanguage(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (lang === 'de') return; // DE-Text steht bereits im HTML
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    updateMapLanguage(lang);
+  }
+
+  // DE-Original merken, um beim Zurückwechseln wiederherzustellen
+  const deSnapshot = new Map();
+  document.querySelectorAll('[data-i18n]').forEach(el => deSnapshot.set(el, el.innerHTML));
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      if (lang === 'de') {
+        deSnapshot.forEach((html, el) => el.innerHTML = html);
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === 'de'));
+        document.documentElement.lang = 'de';
+        updateMapLanguage('de');
+      } else {
+        applyLanguage(lang);
+      }
+    });
+  });
+
+  /* ---------- Bearbeitungsmodus ---------- */
   const editToggle = document.getElementById('editToggle');
   const saveBtn = document.getElementById('saveBtn');
   const editToolbar = document.querySelector('.edit-toolbar');
   const editableSelector = 'main h2, main h3, main p, main li span, main li a, main details summary, main .content p, main .content li, main .callout p, main .callout h3, main .step-body > p, main .note-box, footer';
   let editing = false;
 
-  // Toolbar nur anzeigen, wenn die Seite mit ?edit=1 aufgerufen wird
   if (new URLSearchParams(window.location.search).get('edit') === '1') {
     editToolbar.classList.add('visible');
   }
@@ -479,7 +804,6 @@
 
   editToggle.addEventListener('click', () => setEditing(!editing));
 
-  // Verhindert, dass Links im Bearbeitungsmodus die Seite verlassen
   document.addEventListener('click', (e) => {
     if (editing && e.target.tagName === 'A') e.preventDefault();
   });
@@ -491,7 +815,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'gaestemappe.html';
+    a.download = 'index.html';
     document.body.appendChild(a);
     a.click();
     a.remove();
