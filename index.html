@@ -333,13 +333,13 @@
       <details>
         <summary data-i18n="s5_d3_summary">Streaming (Netflix, YouTube &amp; Co.)</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s5_d3_text">Home-Taste drücken → App auswählen → mit eigenem Account anmelden</p>
+          <p data-i18n="s5_d3_text">Home-Taste drücken → App auswählen → mit eigenem Account anmelden</p>
         </div>
       </details>
       <details>
         <summary data-i18n="s5_d4_summary">Lautstärke &amp; Ausschalten</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s5_d4_text" Lautstärketasten mit + -, Ausschalten über Power-Taste</p>
+          <p data-i18n="s5_d4_text">Lautstärketasten mit + / –, Ausschalten über die Power-Taste</p>
         </div>
       </details>
     </div>
@@ -359,7 +359,7 @@
       <details>
         <summary data-i18n="s6_d2_summary">Spülmaschine</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s6_d2_text"> Standort Spülmaschienenpulver und Klarspüler findest du unter der Spüle</p>
+          <p data-i18n="s6_d2_text">Spülmaschinenpulver und Klarspüler findest du unter der Spüle.</p>
         </div>
       </details>
       <details>
@@ -504,7 +504,7 @@
       <details>
         <summary data-i18n="s12_d2_summary">Wie wird sie berechnet?</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s12_d2_text">Beispiel: 100 € Übernachtungspreis × 4,5 % = 4,50 € Beherbergungssteuer pro Nacht.</p>
+          <p data-i18n="s12_d2_text">Beispiel: 100 € Übernachtungspreis × 4,5 % = 4,50 € Beherbergungssteuer pro Nacht.</p>
         </div>
       </details>
       <div class="note-box" data-i18n="s12_note">Die genaue Endabrechnung findest du auf dem Tisch in der Unterkunft.</div>
@@ -541,12 +541,15 @@
       <h2 data-i18n="s14_title">Kontakt &amp; Notfälle</h2>
       <ul class="fact-list">
         <li><span data-i18n="s14_fl_email">E-Mail</span><span><a href="mailto:info.haus.wagner@gmx.de">info.haus.wagner@gmx.de</a></span></li>
-        <li><span data-i18n="s14_fl_erreichbarkeit">Erreichbarkeit</span><span class="placeholder" data-i18n="s14_ph_erreichbarkeit">01705624253 </span></li>
+        <li><span data-i18n="s14_fl_erreichbarkeit">Erreichbarkeit</span><span data-i18n="s14_ph_erreichbarkeit">01705624253</span></li>
         <li><span data-i18n="s14_fl_adresse">Adresse</span><span>Hamsens Busch 46a, 48167 Münster</span></li>
       </ul>
       <p style="margin-top:14px;" data-i18n="s14_closing">Wir wünschen dir einen erholsamen Aufenthalt im Kleinen Bungalow!</p>
       <div class="note-box" style="margin-top:24px;">
-        <strong>
+        <strong>Hinweis für den Gastgeber:</strong> Diese Seite lässt sich direkt im Browser bearbeiten – ganz ohne Programmierkenntnisse. Rufe die Seite mit dem Zusatz <code>?edit=1</code> in der Adresszeile auf (z. B. <code>index.html?edit=1</code>), klicke unten rechts auf „Seite bearbeiten", ändere die Platzhalter-Texte direkt anklickend und lade die aktualisierte Datei über „Als Datei speichern" herunter. Anschließend die heruntergeladene Datei einfach im GitHub-Repo hochladen und die alte <code>index.html</code> damit überschreiben. Hinweis: Übersetzte Inhalte (EN/NL) musst du nach dem Ausfüllen der deutschen Platzhalter separat im Code ergänzen – dazu gerne bei Bedarf melden.
+      </div>
+    </div>
+  </div>
 
 </main>
 
@@ -554,7 +557,10 @@
   Kleiner Bungalow – Gästehaus in Münster-Wolbeck
 </footer>
 
-
+<div class="edit-hint">Klicke auf einen Text, um ihn zu ändern – speichere anschließend die aktualisierte Datei.</div>
+<div class="edit-toolbar">
+  <button id="saveBtn" class="edit-btn">Als Datei speichern</button>
+  <button id="editToggle" class="edit-btn">Seite bearbeiten</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -625,7 +631,7 @@
       s2_fl_ruhezeiten:"Quiet hours", s2_ph_ruhezeiten:"from 10:00 PM to 7:00 AM",
       s2_fl_kinder:"Travel cot & high chair", s2_ph_kinder:"free of charge, on request",
       s2_note:"The bungalow borders our own house – occasional noise from our kids is part of it. We hope you enjoy the family atmosphere.",
-      s2_sketch_caption:"The Kleiner Bungalow – design sketch",
+      s2_sketch_caption:"The Kleiner Bungalow –",
       s3_title:"Getting Around (Bus Connections, Bike Rental, Parking)",
       s3_intro:"Here's how to get around comfortably during your stay:",
       s3_fl_bus:"Bus connection", s3_ph_bus:"Line 8 to Wolbeck Schulzentrum",
@@ -634,7 +640,7 @@
       s3_fl_taxi:"Taxi / ride service", s3_ph_taxi:"0251 60011",
       s4_title:"WiFi", s4_fl_ssid:"Network name (SSID)", s4_ph_ssid:"Kleiner Bungalow",
       s4_fl_pw:"Password", s4_ph_pw:"HamsensBusch46a",
-      s4_text:"If you can't connect: unplugging and replugging the router usually helps. If problems persist, just let us know.",
+      s4_text:"If you have any problems, just let us know.",
       s5_title:"Using the TV", s5_intro:"Here's how to turn on the TV and find your favourite channel or streaming service:",
       s5_d1_summary:"Turning on the TV", s5_d1_li1:"Turn on using the red power button on the remote",
       s5_d1_li2:"Open the waipu.tv app (see next step for instructions)",
@@ -644,11 +650,11 @@
       s5_d2_li3:"If the app isn't visible right away: go all the way right to \u201cAll Apps\u201d and select waipu.tv there",
       s5_d2_li4:"In the waipu.tv app, go to \u201cLive TV\u201d",
       s5_d2_li5:"Select a channel (e.g. ARD, ZDF, RTL) and start it with OK",
-      s5_d3_summary:"Streaming (Netflix, YouTube & more)", s5_d3_text:"[Insert notes, e.g. press Home button → select app → sign in with your own account]",
-      s5_d4_summary:"Volume & turning off", s5_d4_text:"[Insert notes, e.g. volume buttons on the side, turn off via power button]",
+      s5_d3_summary:"Streaming (Netflix, YouTube & more)", s5_d3_text:"Press the Home button → select the app → sign in with your own account",
+      s5_d4_summary:"Volume & turning off", s5_d4_text:"Volume buttons +/–, turn off via the power button",
       s6_title:"House Facilities", s6_intro:"Quick instructions for heating, hot water and kitchen appliances:",
       s6_d1_summary:"Heating & thermostat", s6_d1_text:"Please use water, electricity and heating responsibly. Air out the rooms effectively (open windows fully at least twice a day) and turn off lights and appliances when not in use. Keep windows closed while heating.",
-      s6_d2_summary:"Dishwasher", s6_d2_text:"[Insert notes, e.g. operation, location of dishwasher tabs]",
+      s6_d2_summary:"Dishwasher", s6_d2_text:"Dishwasher tabs and rinse aid are located under the sink.",
       s6_d3_summary:"Coffee machine", s6_d3_text:"There's a Nespresso machine and a filter coffee machine in the bottom drawer under the oven. Capsules and ground coffee are in the drawer under the oven.",
       s6_d4_summary:"Washing machine & iron", s6_d4_text:"The washing machine is currently out of order, unfortunately. You'll find an iron in the cabinet next to the sink, and the ironing board to the left of the washing machine.",
       s7_title:"Waste Sorting", s7_fl_rest:"General waste", s7_ph_rest:"black bin",
@@ -675,11 +681,11 @@
       tag_paare:"Couples", tag_familien:"Families", tag_wanderer:"Hikers", tag_radfahrer:"Cyclists",
       tag_entspannung:"Relaxation", tag_kultur:"Culture",
       s12_title:"Accommodation Tax",
-      s12_intro:"The City of Münster levies an accommodation tax of <strong>4.5% of the overnight rate</strong> on private stays. It is settled on site and is not included in the listed room rates.",
+      s12_intro:"The City of Münster levies an accommodation tax of <strong>4.5% of the overnight rate</strong>. It is settled on site and is not included in the listed room rates.",
       s12_d1_summary:"Who pays the tax?",
-      s12_d1_text:"It applies to private, non-business overnight stays. If your stay is verifiably for business purposes (e.g. employer confirmation), an exemption may be possible – just get in touch with us.",
+      s12_d1_text:"It applies to all tourist overnight stays and is payable by the guest.",
       s12_d2_summary:"How is it calculated?",
-      s12_d2_text:"Example: €100 overnight rate × 4.5% = €4.50 accommodation tax per night. [Add an exact calculation for the stay if needed]",
+      s12_d2_text:"Example: €100 overnight rate × 4.5% = €4.50 accommodation tax per night.",
       s12_note:"You'll find the exact final invoice on the table in the accommodation.",
       s13_title:"Check-out",
       s13_intro:"Check-out is until 11:00 AM. To make sure everything runs smoothly, we kindly ask you to:",
@@ -718,7 +724,7 @@
       s2_fl_ruhezeiten:"Rusttijden", s2_ph_ruhezeiten:"van 22:00 tot 7:00 uur",
       s2_fl_kinder:"Reisbedje & kinderstoel", s2_ph_kinder:"gratis, op aanvraag",
       s2_note:"De bungalow grenst aan ons woonhuis – af en toe kindergeluiden horen erbij. We hopen dat je van de gezellige sfeer geniet.",
-      s2_sketch_caption:"De Kleine Bungalow – ontwerpschets",
+      s2_sketch_caption:"De Kleine Bungalow –",
       s3_title:"Mobiliteit (Bus, Fietsverhuur, Parkeren)",
       s3_intro:"Zo kom je tijdens je verblijf gemakkelijk van A naar B:",
       s3_fl_bus:"Busverbinding", s3_ph_bus:"Lijn 8 tot Wolbeck Schulzentrum",
@@ -727,7 +733,7 @@
       s3_fl_taxi:"Taxi / ritservice", s3_ph_taxi:"0251 60011",
       s4_title:"WiFi", s4_fl_ssid:"Netwerknaam (SSID)", s4_ph_ssid:"Kleiner Bungalow",
       s4_fl_pw:"Wachtwoord", s4_ph_pw:"HamsensBusch46a",
-      s4_text:"Kun je geen verbinding maken? De router uit- en weer inpluggen helpt meestal. Bij problemen kun je ons altijd even laten weten.",
+      s4_text:"Bij problemen kun je ons altijd even laten weten.",
       s5_title:"Bediening van de televisie", s5_intro:"Zo zet je de tv aan en vind je je favoriete zender of streamingdienst:",
       s5_d1_summary:"Televisie inschakelen", s5_d1_li1:"Inschakelen met de rode aan/uit-knop op de afstandsbediening",
       s5_d1_li2:"Open de waipu.tv app (zie de volgende stap voor uitleg)",
@@ -737,11 +743,11 @@
       s5_d2_li3:"Is de app niet direct zichtbaar? Ga helemaal rechts naar \u201cAlle apps\u201d en selecteer daar waipu.tv",
       s5_d2_li4:"Ga in de waipu.tv app naar \u201cLive TV\u201d",
       s5_d2_li5:"Kies een zender (bijv. ARD, ZDF, RTL) en start met OK",
-      s5_d3_summary:"Streaming (Netflix, YouTube & meer)", s5_d3_text:"[Aanwijzingen invullen, bijv. Home-knop indrukken → app selecteren → inloggen met eigen account]",
-      s5_d4_summary:"Volume & uitschakelen", s5_d4_text:"[Aanwijzingen invullen, bijv. volumeknoppen aan de zijkant, uitschakelen via aan/uit-knop]",
+      s5_d3_summary:"Streaming (Netflix, YouTube & meer)", s5_d3_text:"Home-knop indrukken → app selecteren → inloggen met eigen account",
+      s5_d4_summary:"Volume & uitschakelen", s5_d4_text:"Volumeknoppen +/–, uitschakelen via de aan/uit-knop",
       s6_title:"Huistechniek", s6_intro:"Korte bedieningsinstructies voor verwarming, warm water en keukenapparatuur:",
       s6_d1_summary:"Verwarming & thermostaat", s6_d1_text:"Ga verantwoord om met water, stroom en verwarming. Lucht effectief (minstens 2× per dag kort en krachtig luchten, dus ramen volledig open) en schakel licht en apparaten uit wanneer ze niet nodig zijn. Houd ramen dicht tijdens het verwarmen.",
-      s6_d2_summary:"Vaatwasser", s6_d2_text:"[Aanwijzingen invullen, bijv. bediening, locatie vaatwastabletten]",
+      s6_d2_summary:"Vaatwasser", s6_d2_text:"Vaatwastabletten en glansspoelmiddel vind je onder de gootsteen.",
       s6_d3_summary:"Koffiezetapparaat", s6_d3_text:"Er is een Nespresso-apparaat en een filterkoffiezetapparaat in de onderste lade onder de oven. Capsules en gemalen koffie vind je in de lade onder de oven.",
       s6_d4_summary:"Wasmachine & strijkijzer", s6_d4_text:"De wasmachine is momenteel helaas defect. Een strijkijzer vind je in de kast naast de wastafel, de strijkplank links naast de wasmachine.",
       s7_title:"Afvalscheiding", s7_fl_rest:"Restafval", s7_ph_rest:"zwarte container",
@@ -768,11 +774,11 @@
       tag_paare:"Stellen", tag_familien:"Gezinnen", tag_wanderer:"Wandelaars", tag_radfahrer:"Fietsers",
       tag_entspannung:"Ontspanning", tag_kultur:"Cultuur",
       s12_title:"Toeristenbelasting",
-      s12_intro:"De stad Münster heft een toeristenbelasting van <strong>4,5% van de overnachtingsprijs</strong> op particuliere overnachtingen. Deze wordt ter plaatse afgerekend en is niet inbegrepen in de vermelde kamerprijzen.",
+      s12_intro:"De stad Münster heft een toeristenbelasting van <strong>4,5% van de overnachtingsprijs</strong>. Deze wordt ter plaatse afgerekend en is niet inbegrepen in de vermelde kamerprijzen.",
       s12_d1_summary:"Wie betaalt de belasting?",
-      s12_d1_text:"Deze geldt voor particuliere, niet-zakelijke overnachtingen. Bij een aantoonbaar zakelijk verblijf (bijv. bevestiging van de werkgever) is vrijstelling mogelijk – neem gerust contact met ons op.",
+      s12_d1_text:"Deze geldt voor alle toeristische overnachtingen en wordt door de gast betaald.",
       s12_d2_summary:"Hoe wordt deze berekend?",
-      s12_d2_text:"Voorbeeld: € 100 overnachtingsprijs × 4,5% = € 4,50 toeristenbelasting per nacht. [Indien gewenst aanvullen met exact rekenvoorbeeld voor dit verblijf]",
+      s12_d2_text:"Voorbeeld: € 100 overnachtingsprijs × 4,5% = € 4,50 toeristenbelasting per nacht.",
       s12_note:"De exacte eindafrekening vind je op tafel in de accommodatie.",
       s13_title:"Check-out",
       s13_intro:"Check-out is tot 11:00 uur. Om alles soepel te laten verlopen, vragen we je het volgende:",
