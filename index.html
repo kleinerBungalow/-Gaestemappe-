@@ -34,7 +34,7 @@
   header{
     position:relative;
     background:linear-gradient(180deg, rgba(28,37,25,.25), rgba(20,26,17,.85)),
-      url(images/tiergarten-bruecke.jpg') center/cover no-repeat;
+      url('bilder/tiergarten-bruecke.jpg') center/cover no-repeat;
     color:#fff; padding:56px 24px 40px;
   }
   .brand-mark{
@@ -203,7 +203,7 @@
 <body>
 
 <header>
-  <div class="brand-mark"><img src="images/skizze.jpg" alt="Architekturskizze Kleiner Bungalow"></div>
+  <div class="brand-mark"><img src="bilder/haus-skizze.jpg" alt="Architekturskizze Kleiner Bungalow"></div>
   <div class="header-inner">
     <div class="eyebrow" data-i18n="header_eyebrow">Digitale Gästemappe</div>
     <h1 data-i18n="header_title">Willkommen im Kleinen Bungalow</h1>
@@ -272,7 +272,7 @@
       </ul>
       <div class="note-box" data-i18n="s2_note">Der Bungalow grenzt an unser Wohnhaus – gelegentliche Kindergeräusche gehören dazu. Wir freuen uns, wenn du die familiäre Atmosphäre genießt.</div>
       <div class="sketch-illustration">
-        <img src="images/skizze.jpg" alt="Architekturskizze des Kleinen Bungalow">
+        <img src="bilder/haus-skizze.jpg" alt="Architekturskizze des Kleinen Bungalow">
         <div class="caption" data-i18n="s2_sketch_caption">Der Kleine Bungalow – Entwurfsskizze</div>
       </div>
     </div>
@@ -412,7 +412,7 @@
       <ul class="fact-list">
         <li><span data-i18n="s9_fl_supermarkt">Supermarkt</span><span><a href="https://maps.app.goo.gl/7aFRQmR4Ki9qDwCm6" target="_blank" rel="noopener">Standort auf Karte ansehen</a></span></li>
         <li><span data-i18n="s9_fl_baeckerei">Bäckerei</span><span class="placeholder" data-i18n="s9_ph_baeckerei">[Name / Entfernung einfügen]</span></li>
-        <li><span data-i18n="s9_fl_restaurant">Restaurant-Tipp</span><span class="placeholder" data-i18n="s9_ph_restaurant">[Name / Entfernung einfügen]</span></li>
+        <li><span data-i18n="s9_fl_restaurant">Restaurant-Tipp</span><span><a href="https://www.muenster-geht-aus.de/essen-gehen/restaurant.html" target="_blank" rel="noopener">Restaurantübersicht auf Münster geht aus</a></span></li>
         <li><span data-i18n="s9_fl_cafe">Café-Tipp</span><span class="placeholder" data-i18n="s9_ph_cafe">[Name / Entfernung einfügen]</span></li>
       </ul>
     </div>
@@ -439,39 +439,51 @@
     <div class="step-num">11</div>
     <div class="step-body">
       <h2 data-i18n="s11_title">Ausflugstipps in der Umgebung</h2>
-      <p data-i18n="s11_intro">Die berühmte „100-Schlösser-Route" führt nur 100&nbsp;Meter am Bungalow vorbei – hier ein paar Ideen für jeden Geschmack:</p>
+      <p data-i18n="s11_intro">Die berühmte „100-Schlösser-Route" führt nur 100&nbsp;Meter am Bungalow vorbei – hier ein paar Ideen für jeden Geschmack. Noch mehr Inspiration liefert das offizielle <a href="https://www.stadt-muenster.de/ms/tourismus/epaper-explore-muenster2026/" target="_blank" rel="noopener" data-i18n="s11_explore_link">Explore-Münster-Magazin mit 75 Münster-Tipps</a>.</p>
       <div class="tag-row" id="tagRow">
         <button class="tag-btn active" data-target="paare" data-i18n="tag_paare">Paare</button>
         <button class="tag-btn" data-target="familien" data-i18n="tag_familien">Familien</button>
         <button class="tag-btn" data-target="wanderer" data-i18n="tag_wanderer">Wanderer</button>
         <button class="tag-btn" data-target="radfahrer" data-i18n="tag_radfahrer">Radfahrer</button>
+        <button class="tag-btn" data-target="entspannung" data-i18n="tag_entspannung">Entspannung</button>
+        <button class="tag-btn" data-target="kultur" data-i18n="tag_kultur">Kultur</button>
       </div>
       <div class="activity-panel active" id="paare">
         <ul>
-          <li><a href="https://www.quermania.de/nordrhein-westfalen/muenster/schlossgarten-botanischer-garten.php" target="_blank" rel="noopener">Schlossgarten &amp; Botanischer Garten</a></li>
-          <li><a href="https://www.muenster-heute.de/glueckliche-partnerschaft-in-muenster-beziehung" target="_blank" rel="noopener">Romantische Orte in Münster</a></li>
-          <li><a href="https://www.traveloptimizer.de/muenster-aktivitaeten/" target="_blank" rel="noopener">Aasee bei Sonnenuntergang &amp; Aaseeterrassen</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/altstadt/botanischer-garten" target="_blank" rel="noopener">Botanischer Garten am Schloss</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/altstadt/promenade" target="_blank" rel="noopener">Spaziergang auf der Promenade</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/aasee" target="_blank" rel="noopener">Aasee bei Sonnenuntergang</a></li>
         </ul>
       </div>
       <div class="activity-panel" id="familien">
         <ul>
           <li><a href="https://www.wolbeck-muenster.de/wolbeck/natur-in-wolbeck/tiergarten-wolbeck/" target="_blank" rel="noopener">Wolbecker Tiergarten – direkt vor der Tür</a></li>
-          <li><a href="https://www.allwetterzoo.de/" target="_blank" rel="noopener">Allwetterzoo Münster</a></li>
-          <li><a href="https://www.muehlenhof-muenster.org" target="_blank" rel="noopener">Mühlenhof-Freilichtmuseum am Aasee</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/aasee/allwetterzoo" target="_blank" rel="noopener">Allwetterzoo Münster</a></li>
+          <li><a href="https://ninfly.de/" target="_blank" rel="noopener">Ninfly – Trampolinpark &amp; Ninja Sports Arena</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/aasee/planetarium" target="_blank" rel="noopener">LWL-Museum für Naturkunde mit Planetarium</a></li>
         </ul>
       </div>
       <div class="activity-panel" id="wanderer">
         <ul>
-          <li><a href="https://www.komoot.com/de-de/guide/3602512/spaziergaenge-und-leichte-wanderungen-im-wolbecker-tiergarten" target="_blank" rel="noopener">Leichte Wanderungen im Wolbecker Tiergarten</a></li>
-          <li><a href="https://www.ich-geh-wandern.de/runde-vom-schloss-muenster-an-den-aasee-mit-allwetterzoo-und-freilichtmuseum" target="_blank" rel="noopener">Rundweg Schloss – Aasee – Zoo (9,7 km)</a></li>
-          <li><a href="https://www.komoot.com/de-de/guide/3219862/ausflugsziele-im-wolbecker-tiergarten" target="_blank" rel="noopener">Top-Ausflugsziele im Tiergarten</a></li>
+          <li><a href="https://www.stadt-muenster.de/fileadmin/user_upload/stadt-muenster/80_tourismus/pdf/wanderungen_stadtgebiet_muenster.pdf" target="_blank" rel="noopener">Wanderkarte: Besondere Wanderungen durch Münster</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/aasee" target="_blank" rel="noopener">Picknickplätze am Aasee</a></li>
         </ul>
       </div>
       <div class="activity-panel" id="radfahrer">
         <ul>
-          <li><a href="https://muensterlandrad.de/fahrradtouren-im-muensterland/100-schloesser-route.html" target="_blank" rel="noopener">100-Schlösser-Route – 100 m vom Bungalow</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/radtouren-bis-35-km" target="_blank" rel="noopener">Radtouren bis 35 km ab Münster</a></li>
           <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/fahrradverleih" target="_blank" rel="noopener">Fahrradverleih &amp; Radstationen in Münster</a></li>
-          <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt" target="_blank" rel="noopener">Themenrouten durchs Münsterland</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/karten-und-infomaterial" target="_blank" rel="noopener">Karten &amp; Infomaterial Fahrradstadt Münster</a></li>
+        </ul>
+      </div>
+      <div class="activity-panel" id="entspannung">
+        <ul>
+          <li><a href="https://www.muensterland.com/en/tourism/i-am/mitten-im-leben/wellness-in-muensterland/" target="_blank" rel="noopener">Wellness im Münsterland – Zeit zu zweit</a></li>
+        </ul>
+      </div>
+      <div class="activity-panel" id="kultur">
+        <ul>
+          <li><a href="https://www.stadt-muenster.de/tourismus/kunst-kultur/museen" target="_blank" rel="noopener">Museen in Münster</a></li>
         </ul>
       </div>
     </div>
@@ -665,8 +677,9 @@
       poi_aasee_desc:"Münster's popular recreational lake with a lakeside promenade", poi_hafen_desc:"Harbour district with cafés, bars and water views",
       poi_dom_desc:"Münster's historic old town & cathedral",
       s11_title:"Excursion Tips Nearby",
-      s11_intro:"The famous \u201c100 Castles Route\u201d passes just 100 metres from the bungalow – here are a few ideas for every taste:",
+      s11_intro:"The famous \u201c100 Castles Route\u201d passes just 100 metres from the bungalow – here are a few ideas for every taste. For more inspiration, check the official <a href=\"https://www.stadt-muenster.de/ms/tourismus/epaper-explore-muenster2026/\" target=\"_blank\" rel=\"noopener\">Explore Münster magazine with 75 tips</a>.",
       tag_paare:"Couples", tag_familien:"Families", tag_wanderer:"Hikers", tag_radfahrer:"Cyclists",
+      tag_entspannung:"Relaxation", tag_kultur:"Culture",
       s12_title:"Accommodation Tax",
       s12_intro:"The City of Münster levies an accommodation tax of <strong>4.5% of the overnight rate</strong> on private stays. It is settled on site and is not included in the listed room rates.",
       s12_d1_summary:"Who pays the tax?",
@@ -758,8 +771,9 @@
       poi_aasee_desc:"Het populaire recreatiemeer van Münster met wandelpromenade", poi_hafen_desc:"Havenwijk met cafés, bars en uitzicht op het water",
       poi_dom_desc:"Historische binnenstad & kathedraal van Münster",
       s11_title:"Uitjes in de omgeving",
-      s11_intro:"De beroemde \u2018100-kastelenroute\u2019 loopt op maar 100 meter van de bungalow – hier een paar ideeën voor elk wat wils:",
+      s11_intro:"De beroemde \u2018100-kastelenroute\u2019 loopt op maar 100 meter van de bungalow – hier een paar ideeën voor elk wat wils. Meer inspiratie vind je in het officiële <a href=\"https://www.stadt-muenster.de/ms/tourismus/epaper-explore-muenster2026/\" target=\"_blank\" rel=\"noopener\">Explore-Münster-magazine met 75 tips</a>.",
       tag_paare:"Stellen", tag_familien:"Gezinnen", tag_wanderer:"Wandelaars", tag_radfahrer:"Fietsers",
+      tag_entspannung:"Ontspanning", tag_kultur:"Cultuur",
       s12_title:"Toeristenbelasting",
       s12_intro:"De stad Münster heft een toeristenbelasting van <strong>4,5% van de overnachtingsprijs</strong> op particuliere overnachtingen. Deze wordt ter plaatse afgerekend en is niet inbegrepen in de vermelde kamerprijzen.",
       s12_d1_summary:"Wie betaalt de belasting?",
