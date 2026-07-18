@@ -11,14 +11,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   :root{
-    --forest:#2c3a2a;
-    --forest-deep:#1c2519;
-    --sage:#7c8f6e;
-    --sand:#e9e0c9;
-    --linen:#f8f5ec;
-    --ochre:#b5792f;
-    --ink:#242821;
-    --line:rgba(44,58,42,0.15);
+    --forest:#2f3d1a;
+    --forest-deep:#1c2412;
+    --sage:#6b7a45;
+    --sand:#dcdfc4;
+    --linen:#f7f5ec;
+    --ochre:#9c6f35;
+    --ink:#23261c;
+    --line:rgba(47,61,26,0.16);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -32,9 +32,25 @@
   .wrap{max-width:820px; margin:0 auto; padding:0 24px;}
 
   header{
+    position:relative;
     background:linear-gradient(180deg, rgba(28,37,25,.25), rgba(20,26,17,.85)),
       url('bilder/tiergarten-bruecke.jpg') center/cover no-repeat;
     color:#fff; padding:56px 24px 40px;
+  }
+  .brand-mark{
+    position:absolute; top:24px; right:24px; width:64px; height:64px;
+    background:var(--linen); border-radius:50%; overflow:hidden;
+    box-shadow:0 4px 18px rgba(0,0,0,.3); border:2px solid rgba(255,255,255,.6);
+  }
+  .brand-mark img{width:100%; height:100%; object-fit:cover; object-position:38% 42%; transform:scale(1.9);}
+  .sketch-illustration{
+    margin-top:32px; border:1px solid var(--line); background:#fff; padding:10px;
+    max-width:340px;
+  }
+  .sketch-illustration img{width:100%; display:block;}
+  .sketch-illustration .caption{
+    font-size:.72rem; letter-spacing:.05em; color:#8a8a6e; text-align:center;
+    margin-top:8px; text-transform:uppercase;
   }
   .header-inner{max-width:820px; margin:0 auto;}
   .eyebrow{
@@ -187,6 +203,7 @@
 <body>
 
 <header>
+  <div class="brand-mark"><img src="bilder/haus-skizze.jpg" alt="Architekturskizze Kleiner Bungalow"></div>
   <div class="header-inner">
     <div class="eyebrow" data-i18n="header_eyebrow">Digitale Gästemappe</div>
     <h1 data-i18n="header_title">Willkommen im Kleinen Bungalow</h1>
@@ -227,18 +244,13 @@
     <div class="step-num">1</div>
     <div class="step-body">
       <h2 data-i18n="s1_title">Anreise &amp; Zugang</h2>
-      <p class="placeholder" data-i18n="s1_intro">Der Bungalow befindet sich am Ende einer Sackgasse auf der linken Seite.
-Er liegt etwas zurück, rechts neben Hausnummer 46. 
-Das Auto kann vor dem Haus geparkt werden. Wer mit dem Bus anreist, kann gut die Linie 8 bis Wolbeck Schulzentrum nehmen und dann 5 Minuten zur Unterkunft laufen. 
-Die Schlüsselbox befindet sich links neben der Haustür. 
-</p>
+      <p data-i18n="s1_intro">Der Bungalow befindet sich am Ende einer Sackgasse auf der linken Seite. Er liegt etwas zurück, rechts neben Hausnummer 46. Das Auto kann vor dem Haus geparkt werden. Wer mit dem Bus anreist, kann gut die Linie 8 bis Wolbeck Schulzentrum nehmen und dann 5 Minuten zur Unterkunft laufen. Die Schlüsselbox befindet sich links neben der Haustür.</p>
       <ul class="fact-list">
         <li><span data-i18n="s1_fl_adresse">Adresse</span><span>Hamsens Busch, 48167 Münster</span></li>
-        <li><span data-i18n="s1_fl_auto">Anreise mit dem Auto</span><span class="placeholder" data-i18n="s1_ph_auto">Parkmöglichkeiten befinden sich direkt an der Unterkunft bzw. in der näheren Umgebung.
-</span></li>
-        <li><span data-i18n="s1_fl_oepnv">Anreise mit ÖPNV</span><span class="placeholder" data-i18n="s1_ph_oepnv"> Linie 8 bis Wolbeck Schulzentrum</span></li>
-        <li><span data-i18n="s1_fl_code">Zugangscode / Schlüsselbox</span><span class="placeholder" data-i18n="s1_ph_code">Der Pin wird am Abend vor der Anreise übermittelt.</span></li>
-        <li><span data-i18n="s1_fl_ansprechpartner">Ansprechpartner bei Anreise</span><span class="placeholder" data-i18n="s1_ph_ansprechpartner">Vera 01705624253</span></li>
+        <li><span data-i18n="s1_fl_auto">Anreise mit dem Auto</span><span data-i18n="s1_ph_auto">Parkmöglichkeiten befinden sich direkt an der Unterkunft bzw. in der näheren Umgebung.</span></li>
+        <li><span data-i18n="s1_fl_oepnv">Anreise mit ÖPNV</span><span data-i18n="s1_ph_oepnv">Linie 8 bis Wolbeck Schulzentrum</span></li>
+        <li><span data-i18n="s1_fl_code">Zugangscode / Schlüsselbox</span><span data-i18n="s1_ph_code">Der Pin wird am Abend vor der Anreise übermittelt.</span></li>
+        <li><span data-i18n="s1_fl_ansprechpartner">Ansprechpartner bei Anreise</span><span data-i18n="s1_ph_ansprechpartner">Vera, 01705624253</span></li>
       </ul>
     </div>
   </div>
@@ -249,17 +261,20 @@ Die Schlüsselbox befindet sich links neben der Haustür.
       <h2 data-i18n="s2_title">Informationen zur Unterkunft</h2>
       <p data-i18n="s2_intro">Der Kleine Bungalow bietet 70&nbsp;m² für bis zu 4 Personen: Schlafzimmer, Wohnzimmer, Küche, Bad und ein eigener Gartenzugang über die Garage.</p>
       <ul class="fact-list">
-        <li><span data-i18n="s2_fl_checkin">Check-in</span><span class="placeholder" data-i18n="s2_ph_checkin">ab 16:00 Uhr </span></li>
-        <li><span data-i18n="s2_fl_checkout">Check-out</span><span class="placeholder" data-i18n="s2_ph_checkout">bis 11:00 Uhr </span></li>
-        <li><span data-i18n="s2_fl_schluessel">Schlüssel</span><span class="placeholder" data-i18n="s2_ph_schluessel">Die Schlüsselbox befindet sich links neben der Haustür</span></li>
-        <li><span data-i18n="s2_fl_parken">Parken</span><span class="placeholder" data-i18n="s2_ph_parken">Parkmöglichkeiten befinden sich direkt an der Unterkunft bzw. in der näheren Umgebung.
-</span></li>
-        <li><span data-i18n="s2_fl_haustiere">Haustiere</span><span class="placeholder" data-i18n="s2_ph_haustiere">nicht gestattet</span></li>
+        <li><span data-i18n="s2_fl_checkin">Check-in</span><span data-i18n="s2_ph_checkin">ab 16:00 Uhr</span></li>
+        <li><span data-i18n="s2_fl_checkout">Check-out</span><span data-i18n="s2_ph_checkout">bis 11:00 Uhr</span></li>
+        <li><span data-i18n="s2_fl_schluessel">Schlüssel</span><span data-i18n="s2_ph_schluessel">Die Schlüsselbox befindet sich links neben der Haustür</span></li>
+        <li><span data-i18n="s2_fl_parken">Parken</span><span data-i18n="s2_ph_parken">Parkmöglichkeiten befinden sich direkt an der Unterkunft bzw. in der näheren Umgebung.</span></li>
+        <li><span data-i18n="s2_fl_haustiere">Haustiere</span><span data-i18n="s2_ph_haustiere">nicht gestattet</span></li>
         <li><span data-i18n="s2_fl_rauchen">Rauchen</span><span class="placeholder" data-i18n="s2_ph_rauchen">nicht gestattet</span></li>
-        <li><span data-i18n="s2_fl_ruhezeiten">Ruhezeiten</span><span class="placeholder" data-i18n="s2_ph_ruhezeiten">ab 22:00 Uhr bis 7:00 Uhr</span></li>
+        <li><span data-i18n="s2_fl_ruhezeiten">Ruhezeiten</span><span data-i18n="s2_ph_ruhezeiten">ab 22:00 Uhr bis 7:00 Uhr</span></li>
         <li><span data-i18n="s2_fl_kinder">Reisebett &amp; Kinderhochstuhl</span><span data-i18n="s2_ph_kinder">kostenlos, auf Anfrage</span></li>
       </ul>
       <div class="note-box" data-i18n="s2_note">Der Bungalow grenzt an unser Wohnhaus – gelegentliche Kindergeräusche gehören dazu. Wir freuen uns, wenn du die familiäre Atmosphäre genießt.</div>
+      <div class="sketch-illustration">
+        <img src="bilder/haus-skizze.jpg" alt="Architekturskizze des Kleinen Bungalow">
+        <div class="caption" data-i18n="s2_sketch_caption">Der Kleine Bungalow – Entwurfsskizze</div>
+      </div>
     </div>
   </div>
 
@@ -269,10 +284,10 @@ Die Schlüsselbox befindet sich links neben der Haustür.
       <h2 data-i18n="s3_title">Mobilität (Busverbindung, Fahrradverleih, Parkmöglichkeit)</h2>
       <p data-i18n="s3_intro">So kommst du während deines Aufenthalts bequem von A nach B:</p>
       <ul class="fact-list">
-        <li><span data-i18n="s3_fl_bus">Busverbindung</span><span class="placeholder" data-i18n="s3_ph_bus">Linie 8 bis Wolbeck Schulzentrum</span></li>
-        <li><span data-i18n="s3_fl_rad">Fahrradverleih</span><span class="placeholder" data-i18n="s3_ph_rad <li><a href=">https://www.stadt-muenster.de/tourismus/fahrradstadt/fahrradverleih<target="_blank" rel="noopener"Farradverleih</a></li>/span></li>
-        <li><span data-i18n="s3_fl_park">Parkmöglichkeit</span><span class="placeholder" data-i18n="s3_ph_park">https://www.stadt-muenster.de/rathaus/smartes-muenster/parkleitsystem</span></li>
-        <li><span data-i18n="s3_fl_taxi">Taxi / Fahrdienst</span><span class="placeholder" data-i18n="s3_ph_taxi">0251 60011</span></li>
+        <li><span data-i18n="s3_fl_bus">Busverbindung</span><span data-i18n="s3_ph_bus">Linie 8 bis Wolbeck Schulzentrum</span></li>
+        <li><span data-i18n="s3_fl_rad">Fahrradverleih</span><span><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/fahrradverleih" target="_blank" rel="noopener">Fahrradverleih-Stationen in Münster</a></span></li>
+        <li><span data-i18n="s3_fl_park">Parkmöglichkeit</span><span><a href="https://www.stadt-muenster.de/rathaus/smartes-muenster/parkleitsystem" target="_blank" rel="noopener">Parkleitsystem Münster</a></span></li>
+        <li><span data-i18n="s3_fl_taxi">Taxi / Fahrdienst</span><span data-i18n="s3_ph_taxi">0251 60011</span></li>
       </ul>
     </div>
   </div>
@@ -282,10 +297,10 @@ Die Schlüsselbox befindet sich links neben der Haustür.
     <div class="step-body">
       <h2 data-i18n="s4_title">WLAN</h2>
       <ul class="fact-list">
-        <li><span data-i18n="s4_fl_ssid">Netzwerkname (SSID)</span><span class="placeholder" data-i18n="s4_ph_ssid">Kleiner Bungalow</span></li>
-        <li><span data-i18n="s4_fl_pw">Passwort</span><span class="placeholder" data-i18n="s4_ph_pw">HamsensBusch46a</span></li>
+        <li><span data-i18n="s4_fl_ssid">Netzwerkname (SSID)</span><span data-i18n="s4_ph_ssid">Kleiner Bungalow</span></li>
+        <li><span data-i18n="s4_fl_pw">Passwort</span><span data-i18n="s4_ph_pw">HamsensBusch46a</span></li>
       </ul>
-      <p data-i18n="s4_text">Bei Problemen einfach kurz melden.</p>
+      <p data-i18n="s4_text">Solltest du keine Verbindung bekommen: Router aus- und wieder einstecken hilft meistens. Bei Problemen einfach kurz melden.</p>
     </div>
   </div>
 
@@ -299,24 +314,20 @@ Die Schlüsselbox befindet sich links neben der Haustür.
         <div class="content">
           <ol>
             <li data-i18n="s5_d1_li1">Mit der roten Power-Taste auf der Fernbedienung einschalten</li>
-            <li class="placeholder" data-i18n="s5_d1_li2">waipu.tv App öAnen 
-1. Auf dem Startbildschirm nach unten zu „Apps“ gehen 
-2. Die App waipu.tv auswählen 
-3. Mit der OK-Taste (runde Taste in der Mitte) öffnen 
-Sollte die App nicht direkt sichtbar sein: 
- Ganz rechts zu „Alle Apps“ gehen 
- Dort waipu.tv auswählen 
-Fernsehen starten 
-1. In der waipu.tv App auf „Live TV“ gehen 
-2. Sender auswählen (z. B. ARD, ZDF, RTL etc.) 
-3. Mit OK (runde Taste in der Mitte) starten </li>
+            <li data-i18n="s5_d1_li2">Die waipu.tv App öffnen (Anleitung siehe nächster Schritt)</li>
           </ol>
         </div>
       </details>
       <details>
-        <summary data-i18n="s5_d2_summary">Sender wechseln</summary>
+        <summary data-i18n="s5_d2_summary">waipu.tv öffnen &amp; Sender wählen</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s5_d2_text">[Hinweise zu Fernbedienung / Senderliste einfügen, z. B. Programm hoch/runter oder Zifferntasten]</p>
+          <ol>
+            <li data-i18n="s5_d2_li1">Auf dem Startbildschirm nach unten zu „Apps" gehen</li>
+            <li data-i18n="s5_d2_li2">Die App waipu.tv auswählen und mit der OK-Taste (runde Taste in der Mitte) öffnen</li>
+            <li data-i18n="s5_d2_li3">Falls die App nicht direkt sichtbar ist: ganz rechts zu „Alle Apps" gehen und dort waipu.tv auswählen</li>
+            <li data-i18n="s5_d2_li4">In der waipu.tv App auf „Live TV" gehen</li>
+            <li data-i18n="s5_d2_li5">Sender auswählen (z. B. ARD, ZDF, RTL etc.) und mit OK starten</li>
+          </ol>
         </div>
       </details>
       <details>
@@ -342,26 +353,25 @@ Fernsehen starten
       <details>
         <summary data-i18n="s6_d1_summary">Heizung &amp; Thermostat</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s6_d1_text">Bitte gehe verantwortungsvoll mit Wasser, Strom und Heizung um. Lüfte effektiv (mindestens 2x täglich stoßlüften, also Fenster ganz öffnen) und 
-schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Heizen geschlossen halten</p>
+          <p data-i18n="s6_d1_text">Bitte gehe verantwortungsvoll mit Wasser, Strom und Heizung um. Lüfte effektiv (mindestens 2× täglich stoßlüften, also Fenster ganz öffnen) und schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Heizen geschlossen halten.</p>
         </div>
       </details>
       <details>
-        <summary data-i18n="s6_d2_summary">Spülmaschiene</summary>
+        <summary data-i18n="s6_d2_summary">Spülmaschine</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s6_d2_text">[Hinweise einfügen, z. B. Boiler-Standort, Aufheizzeit]</p>
+          <p class="placeholder" data-i18n="s6_d2_text">[Hinweise einfügen, z. B. Bedienung, Standort Spültabs]</p>
         </div>
       </details>
       <details>
         <summary data-i18n="s6_d3_summary">Kaffeemaschine</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s6_d3_text">Es gibt eine Nespressomaschiene und eine Filtermaschiene in der untersten Schublade unter dem Backofen, Kapseln und Pulver findest du in der Schublade unter dem Backofen.</p>
+          <p data-i18n="s6_d3_text">Es gibt eine Nespresso-Maschine und eine Filtermaschine in der untersten Schublade unter dem Backofen. Kapseln und Pulver findest du in der Schublade unter dem Backofen.</p>
         </div>
       </details>
       <details>
         <summary data-i18n="s6_d4_summary">Waschmaschine &amp; Bügeleisen</summary>
         <div class="content">
-          <p class="placeholder" data-i18n="s6_d4_text">Die Waschmaschiene ist derzeit leider defekt, ein Bügeleisen findest du im Schrank neben dem Waschbecken und ein Bügelbrett links neben der Waschmaschiene</p>
+          <p data-i18n="s6_d4_text">Die Waschmaschine ist derzeit leider defekt. Ein Bügeleisen findest du im Schrank neben dem Waschbecken, das Bügelbrett links neben der Waschmaschine.</p>
         </div>
       </details>
     </div>
@@ -375,7 +385,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
         <li><span data-i18n="s7_fl_rest">Restmüll</span><span class="placeholder" data-i18n="s7_ph_rest">[Standort Tonne einfügen]</span></li>
         <li><span data-i18n="s7_fl_gelb">Gelber Sack / Verpackungen</span><span class="placeholder" data-i18n="s7_ph_gelb">[Standort einfügen]</span></li>
         <li><span data-i18n="s7_fl_papier">Papier</span><span class="placeholder" data-i18n="s7_ph_papier">[Standort einfügen]</span></li>
-        <li><span data-i18n="s7_fl_glas">Glas</span><span class="placeholder" data-i18n="s7_ph_glas">"https://maps.app.goo.gl/aNPQJb1i3wiupSi88"</span></li>
+        <li><span data-i18n="s7_fl_glas">Glas</span><span><a href="https://maps.app.goo.gl/aNPQJb1i3wiupSi88" target="_blank" rel="noopener">Standort auf Karte ansehen</a></span></li>
       </ul>
     </div>
   </div>
@@ -386,9 +396,10 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
       <h2 data-i18n="s8_title">Sicherheit &amp; Notfälle</h2>
       <ul class="fact-list">
         <li><span data-i18n="s8_fl_rauchmelder">Rauchmelder</span><span class="placeholder" data-i18n="s8_ph_rauchmelder">[Standort einfügen]</span></li>
-        <li><span data-i18n="s8_fl_erstehilfe">Erste-Hilfe-Kasten</span><span class="placeholder" data-i18n="s8_ph_erstehilfe">im Schrank über dem Backofen</span></li>
-        <li><span data-i18n="s8_fl_apotheke">Nächste Apotheke</span><span class="placeholder" data-i18n="s8_ph_apotheke">https://www.apotheke-wolbeck.de/</span></li>
-        <li><span data-i18n="s8_fl_krankenhaus">Nächstes Krankenhaus</span><span class="placeholder" data-i18n="s8_ph_krankenhaus">https://maps.app.goo.gl/2khb2kgGqzR9kyjE8</span></li>
+        <li><span data-i18n="s8_fl_erstehilfe">Erste-Hilfe-Kasten</span><span data-i18n="s8_ph_erstehilfe">im Schrank über dem Backofen</span></li>
+        <li><span data-i18n="s8_fl_feuerloescher">Feuerlöscher</span><span class="placeholder" data-i18n="s8_ph_feuerloescher">[Standort einfügen]</span></li>
+        <li><span data-i18n="s8_fl_apotheke">Nächste Apotheke</span><span><a href="https://www.apotheke-wolbeck.de/" target="_blank" rel="noopener">Apotheke Wolbeck</a></span></li>
+        <li><span data-i18n="s8_fl_krankenhaus">Nächstes Krankenhaus</span><span><a href="https://maps.app.goo.gl/2khb2kgGqzR9kyjE8" target="_blank" rel="noopener">Standort auf Karte ansehen</a></span></li>
       </ul>
       <div class="note-box" data-i18n="s8_note">Notruf Feuerwehr &amp; Rettungsdienst: <strong>112</strong> · Polizei: <strong>110</strong> (deutschlandweit, kostenlos, auch ohne Guthaben erreichbar)</div>
     </div>
@@ -399,7 +410,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
     <div class="step-body">
       <h2 data-i18n="s9_title">Einkaufen &amp; Alltag in der Nähe</h2>
       <ul class="fact-list">
-        <li><span data-i18n="s9_fl_supermarkt">Supermarkt</span><span class="placeholder" data-i18n="s9_ph_supermarkt">https://maps.app.goo.gl/7aFRQmR4Ki9qDwCm6</span></li>
+        <li><span data-i18n="s9_fl_supermarkt">Supermarkt</span><span><a href="https://maps.app.goo.gl/7aFRQmR4Ki9qDwCm6" target="_blank" rel="noopener">Standort auf Karte ansehen</a></span></li>
         <li><span data-i18n="s9_fl_baeckerei">Bäckerei</span><span class="placeholder" data-i18n="s9_ph_baeckerei">[Name / Entfernung einfügen]</span></li>
         <li><span data-i18n="s9_fl_restaurant">Restaurant-Tipp</span><span class="placeholder" data-i18n="s9_ph_restaurant">[Name / Entfernung einfügen]</span></li>
         <li><span data-i18n="s9_fl_cafe">Café-Tipp</span><span class="placeholder" data-i18n="s9_ph_cafe">[Name / Entfernung einfügen]</span></li>
@@ -416,7 +427,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
       <ul class="map-legend">
         <li><span class="dot"></span><span><strong>Kleiner Bungalow</strong> – <span data-i18n="poi_bungalow_desc">Dein Zuhause auf Zeit</span></span></li>
         <li><span class="dot"></span><span><strong>Wolbecker Tiergarten</strong> – <span data-i18n="poi_tiergarten_desc">Naherholungsgebiet mit Wegen entlang der Angel</span></span></li>
-        <li><span class="dot"></span><span><strong>Allwetterzoo Münster</strong> – <span data-i18n="poi_zoo_desc">Zoo am Aasee</span></span></li>
+        <li><span class="dot"></span><span><strong>Allwetterzoo Münster</strong> – <span data-i18n="poi_zoo_desc">Zoo mit Aquarium am Aasee</span></span></li>
         <li><span class="dot"></span><span><strong>Mühlenhof-Freilichtmuseum</strong> – <span data-i18n="poi_muehlenhof_desc">Freilichtmuseum mit historischen Gebäuden</span></span></li>
         <li><span class="dot"></span><span><strong>Münster Altstadt &amp; Dom</strong> – <span data-i18n="poi_dom_desc">Münsters historische Altstadt &amp; Dom</span></span></li>
       </ul>
@@ -427,7 +438,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
   <div class="step" id="ausfluege">
     <div class="step-num">11</div>
     <div class="step-body">
-      <h2 data-i18n="s11_title">Ausflugstipps in der Umgebung</h2>https://www.stadt-muenster.de/ms/tourismus/epaper-explore-muenster2026/#0
+      <h2 data-i18n="s11_title">Ausflugstipps in der Umgebung</h2>
       <p data-i18n="s11_intro">Die berühmte „100-Schlösser-Route" führt nur 100&nbsp;Meter am Bungalow vorbei – hier ein paar Ideen für jeden Geschmack:</p>
       <div class="tag-row" id="tagRow">
         <button class="tag-btn active" data-target="paare" data-i18n="tag_paare">Paare</button>
@@ -470,9 +481,15 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
     <div class="step-num">12</div>
     <div class="step-body">
       <h2 data-i18n="s12_title">Beherbergungssteuer</h2>
-      <p data-i18n="s12_intro">Die Stadt Münster erhebt auf Übernachtungen eine Beherbergungssteuer in Höhe von <strong>4,5&nbsp;% des Übernachtungspreises</strong>. Sie wird vor Ort abgerechnet und ist nicht in den ausgewiesenen Zimmerpreisen enthalten.</p>
+      <p data-i18n="s12_intro">Die Stadt Münster erhebt auf private Übernachtungen eine Beherbergungssteuer in Höhe von <strong>4,5&nbsp;% des Übernachtungspreises</strong>. Sie wird vor Ort abgerechnet und ist nicht in den ausgewiesenen Zimmerpreisen enthalten.</p>
       <details>
-            <summary data-i18n="s12_d2_summary">Wie wird sie berechnet?</summary>
+        <summary data-i18n="s12_d1_summary">Wer zahlt die Steuer?</summary>
+        <div class="content">
+          <p data-i18n="s12_d1_text">Sie gilt für private, nicht geschäftlich veranlasste Übernachtungen. Bei nachweislich beruflichem Aufenthalt (z. B. Bestätigung des Arbeitgebers) kann eine Befreiung möglich sein – sprich uns bei Bedarf gerne an.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-i18n="s12_d2_summary">Wie wird sie berechnet?</summary>
         <div class="content">
           <p class="placeholder" data-i18n="s12_d2_text">Beispiel: 100 € Übernachtungspreis × 4,5 % = 4,50 € Beherbergungssteuer pro Nacht. [Bei Bedarf mit genauem Rechenbeispiel für den Aufenthalt ergänzen]</p>
         </div>
@@ -490,7 +507,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
         <summary data-i18n="s13_d1_summary">Checkliste vor der Abreise</summary>
         <div class="content">
           <ol>
-            <li data-i18n="s13_d1_li1">Geschirr in die Spülmaschine räumen und ansetzten</li>
+            <li data-i18n="s13_d1_li1">Geschirr in die Spülmaschine räumen und ansetzen</li>
             <li data-i18n="s13_d1_li2">Müll in die entsprechenden Tonnen bringen</li>
             <li data-i18n="s13_d1_li3">Fenster und Türen schließen</li>
             <li data-i18n="s13_d1_li4">Benutzte Handtücher im Bad in den Wäschekorb</li>
@@ -516,7 +533,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
       </ul>
       <p style="margin-top:14px;" data-i18n="s14_closing">Wir wünschen dir einen erholsamen Aufenthalt im Kleinen Bungalow!</p>
       <div class="note-box" style="margin-top:24px;">
-        
+        <strong>Hinweis für den Gastgeber:</strong> Diese Seite lässt sich direkt im Browser bearbeiten – ganz ohne Programmierkenntnisse. Rufe die Seite mit dem Zusatz <code>?edit=1</code> in der Adresszeile auf (z. B. <code>index.html?edit=1</code>), klicke unten rechts auf „Seite bearbeiten", ändere die Platzhalter-Texte direkt anklickend und lade die aktualisierte Datei über „Als Datei speichern" herunter. Anschließend die heruntergeladene Datei einfach im GitHub-Repo hochladen und die alte <code>index.html</code> damit überschreiben. Hinweis: Übersetzte Inhalte (EN/NL) musst du nach dem Ausfüllen der deutschen Platzhalter separat im Code ergänzen – dazu gerne bei Bedarf melden.
       </div>
     </div>
   </div>
@@ -527,6 +544,11 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
   Kleiner Bungalow – Gästehaus in Münster-Wolbeck
 </footer>
 
+<div class="edit-hint">Klicke auf einen Text, um ihn zu ändern – speichere anschließend die aktualisierte Datei.</div>
+<div class="edit-toolbar">
+  <button id="saveBtn" class="edit-btn">Als Datei speichern</button>
+  <button id="editToggle" class="edit-btn">Seite bearbeiten</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -580,48 +602,54 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
       nav_fernseher:"TV", nav_technik:"House Facilities", nav_muell:"Waste Sorting", nav_sicherheit:"Safety",
       nav_einkaufen:"Shopping", nav_karte:"Map", nav_ausfluege:"Activities", nav_steuer:"Accommodation Tax",
       nav_checkout:"Check-out", nav_kontakt:"Contact",
-      s1_title:"Arrival & Access", s1_intro:"[Insert directions, e.g. via the A1 motorway, last 500 m, notes on the driveway]",
-      s1_fl_adresse:"Address", s1_fl_auto:"Arrival by car", s1_ph_auto:"[Insert notes]",
-      s1_fl_oepnv:"Arrival by public transport", s1_ph_oepnv:"[Insert bus line / stop]",
-      s1_fl_code:"Access code / key box", s1_ph_code:"[Insert code]",
-      s1_fl_ansprechpartner:"Contact person on arrival", s1_ph_ansprechpartner:"[Insert name / phone number]",
+      s1_title:"Arrival & Access", s1_intro:"The bungalow is located at the end of a cul-de-sac on the left-hand side. It sits a bit further back, right next to house number 46. You can park your car in front of the house. If you're arriving by bus, take line 8 to Wolbeck Schulzentrum and walk about 5 minutes to the accommodation. The key box is located to the left of the front door.",
+      s1_fl_adresse:"Address", s1_fl_auto:"Arrival by car", s1_ph_auto:"Parking is available directly at the accommodation or nearby.",
+      s1_fl_oepnv:"Arrival by public transport", s1_ph_oepnv:"Bus line 8 to Wolbeck Schulzentrum",
+      s1_fl_code:"Access code / key box", s1_ph_code:"The PIN will be sent to you the evening before arrival.",
+      s1_fl_ansprechpartner:"Contact person on arrival", s1_ph_ansprechpartner:"Vera, +49 170 5624253",
       s2_title:"Accommodation Information",
       s2_intro:"The Kleiner Bungalow offers 70 m² for up to 4 guests: bedroom, living room, kitchen, bathroom, and your own garden access via the garage.",
-      s2_fl_checkin:"Check-in", s2_ph_checkin:"[from 3:00 PM – insert]",
-      s2_fl_checkout:"Check-out", s2_ph_checkout:"[until 11:00 AM – insert]",
-      s2_fl_schluessel:"Key", s2_ph_schluessel:"[Insert handover / key box details]",
-      s2_fl_parken:"Parking", s2_ph_parken:"[Insert parking info]",
-      s2_fl_haustiere:"Pets", s2_ph_haustiere:"[Insert policy]",
+      s2_fl_checkin:"Check-in", s2_ph_checkin:"from 4:00 PM",
+      s2_fl_checkout:"Check-out", s2_ph_checkout:"until 11:00 AM",
+      s2_fl_schluessel:"Key", s2_ph_schluessel:"The key box is located to the left of the front door",
+      s2_fl_parken:"Parking", s2_ph_parken:"Parking is available directly at the accommodation or nearby.",
+      s2_fl_haustiere:"Pets", s2_ph_haustiere:"not permitted",
       s2_fl_rauchen:"Smoking", s2_ph_rauchen:"not permitted",
-      s2_fl_ruhezeiten:"Quiet hours", s2_ph_ruhezeiten:"[e.g. from 10:00 PM – insert]",
+      s2_fl_ruhezeiten:"Quiet hours", s2_ph_ruhezeiten:"from 10:00 PM to 7:00 AM",
       s2_fl_kinder:"Travel cot & high chair", s2_ph_kinder:"free of charge, on request",
-      s2_note:"The kitchen and bathroom border our own house – occasional noise from our kids is part of it. We hope you enjoy the family atmosphere.",
+      s2_note:"The bungalow borders our own house – occasional noise from our kids is part of it. We hope you enjoy the family atmosphere.",
+      s2_sketch_caption:"The Kleiner Bungalow – design sketch",
       s3_title:"Getting Around (Bus Connections, Bike Rental, Parking)",
       s3_intro:"Here's how to get around comfortably during your stay:",
-      s3_fl_bus:"Bus connection", s3_ph_bus:"[Insert bus line, stop & frequency]",
+      s3_fl_bus:"Bus connection", s3_ph_bus:"Line 8 to Wolbeck Schulzentrum",
       s3_fl_rad:"Bike rental", s3_ph_rad:"[Insert rental station & distance]",
       s3_fl_park:"Parking", s3_ph_park:"[Insert parking option]",
-      s3_fl_taxi:"Taxi / ride service", s3_ph_taxi:"[Insert phone number]",
-      s4_title:"WiFi", s4_fl_ssid:"Network name (SSID)", s4_ph_ssid:"[Insert network name]",
-      s4_fl_pw:"Password", s4_ph_pw:"[Insert password]",
+      s3_fl_taxi:"Taxi / ride service", s3_ph_taxi:"0251 60011",
+      s4_title:"WiFi", s4_fl_ssid:"Network name (SSID)", s4_ph_ssid:"Kleiner Bungalow",
+      s4_fl_pw:"Password", s4_ph_pw:"HamsensBusch46a",
       s4_text:"If you can't connect: unplugging and replugging the router usually helps. If problems persist, just let us know.",
       s5_title:"Using the TV", s5_intro:"Here's how to turn on the TV and find your favourite channel or streaming service:",
       s5_d1_summary:"Turning on the TV", s5_d1_li1:"Turn on using the red power button on the remote",
-      s5_d1_li2:"[Insert model-specific steps, e.g. selecting the input source]",
-      s5_d2_summary:"Changing channels", s5_d2_text:"[Insert remote/channel list notes, e.g. channel up/down or number keys]",
+      s5_d1_li2:"Open the waipu.tv app (see next step for instructions)",
+      s5_d2_summary:"Opening waipu.tv & choosing a channel",
+      s5_d2_li1:"On the home screen, scroll down to \u201cApps\u201d",
+      s5_d2_li2:"Select the waipu.tv app and open it with the OK button (round button in the middle)",
+      s5_d2_li3:"If the app isn't visible right away: go all the way right to \u201cAll Apps\u201d and select waipu.tv there",
+      s5_d2_li4:"In the waipu.tv app, go to \u201cLive TV\u201d",
+      s5_d2_li5:"Select a channel (e.g. ARD, ZDF, RTL) and start it with OK",
       s5_d3_summary:"Streaming (Netflix, YouTube & more)", s5_d3_text:"[Insert notes, e.g. press Home button → select app → sign in with your own account]",
       s5_d4_summary:"Volume & turning off", s5_d4_text:"[Insert notes, e.g. volume buttons on the side, turn off via power button]",
       s6_title:"House Facilities", s6_intro:"Quick instructions for heating, hot water and kitchen appliances:",
-      s6_d1_summary:"Heating & thermostat", s6_d1_text:"[Insert notes, e.g. thermostat location, recommended temperature, keep windows closed while heating]",
-      s6_d2_summary:"Hot water", s6_d2_text:"[Insert notes, e.g. boiler location, heat-up time]",
-      s6_d3_summary:"Coffee machine", s6_d3_text:"[Insert notes, e.g. capsule system / filter coffee, location of capsules]",
-      s6_d4_summary:"Washing machine & iron", s6_d4_text:"[Insert notes, e.g. availability, location, detergent]",
+      s6_d1_summary:"Heating & thermostat", s6_d1_text:"Please use water, electricity and heating responsibly. Air out the rooms effectively (open windows fully at least twice a day) and turn off lights and appliances when not in use. Keep windows closed while heating.",
+      s6_d2_summary:"Dishwasher", s6_d2_text:"[Insert notes, e.g. operation, location of dishwasher tabs]",
+      s6_d3_summary:"Coffee machine", s6_d3_text:"There's a Nespresso machine and a filter coffee machine in the bottom drawer under the oven. Capsules and ground coffee are in the drawer under the oven.",
+      s6_d4_summary:"Washing machine & iron", s6_d4_text:"The washing machine is currently out of order, unfortunately. You'll find an iron in the cabinet next to the sink, and the ironing board to the left of the washing machine.",
       s7_title:"Waste Sorting", s7_fl_rest:"General waste", s7_ph_rest:"[Insert bin location]",
       s7_fl_gelb:"Recycling bag / packaging", s7_ph_gelb:"[Insert location]",
       s7_fl_papier:"Paper", s7_ph_papier:"[Insert location]",
       s7_fl_glas:"Glass", s7_ph_glas:"[Insert container location]",
       s8_title:"Safety & Emergencies", s8_fl_rauchmelder:"Smoke detector", s8_ph_rauchmelder:"[Insert location]",
-      s8_fl_erstehilfe:"First aid kit", s8_ph_erstehilfe:"[Insert location]",
+      s8_fl_erstehilfe:"First aid kit", s8_ph_erstehilfe:"in the cabinet above the oven",
       s8_fl_feuerloescher:"Fire extinguisher", s8_ph_feuerloescher:"[Insert location]",
       s8_fl_apotheke:"Nearest pharmacy", s8_ph_apotheke:"[Insert name / address]",
       s8_fl_krankenhaus:"Nearest hospital", s8_ph_krankenhaus:"[Insert name / address]",
@@ -645,13 +673,13 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
       s12_d1_text:"It applies to private, non-business overnight stays. If your stay is verifiably for business purposes (e.g. employer confirmation), an exemption may be possible – just get in touch with us.",
       s12_d2_summary:"How is it calculated?",
       s12_d2_text:"Example: €100 overnight rate × 4.5% = €4.50 accommodation tax per night. [Add an exact calculation for the stay if needed]",
-      s12_note:"You'll receive the exact final invoice at check-out.",
+      s12_note:"You'll find the exact final invoice on the table in the accommodation.",
       s13_title:"Check-out",
-      s13_intro:"Check-out is until [insert time, e.g. 11:00 AM]. To make sure everything runs smoothly, we kindly ask you to:",
+      s13_intro:"Check-out is until 11:00 AM. To make sure everything runs smoothly, we kindly ask you to:",
       s13_d1_summary:"Checklist before departure",
-      s13_d1_li1:"Wash the dishes or put them in the dishwasher", s13_d1_li2:"Take the rubbish to the correct bins",
-      s13_d1_li3:"Close windows and doors", s13_d1_li4:"Leave used towels [insert location]",
-      s13_d1_li5:"Key [insert return location]",
+      s13_d1_li1:"Put the dishes in the dishwasher and start it", s13_d1_li2:"Take the rubbish to the correct bins",
+      s13_d1_li3:"Close windows and doors", s13_d1_li4:"Leave used bathroom towels in the laundry basket",
+      s13_d1_li5:"Put the key back in the key box",
       s13_callout_title:"How was your stay?",
       s13_callout_text:'We always appreciate your feedback and an honest review – feel free to message us directly or leave a note on <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.',
       s14_title:"Contact & Emergencies", s14_fl_email:"Email",
@@ -667,22 +695,23 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
       nav_fernseher:"Televisie", nav_technik:"Huistechniek", nav_muell:"Afvalscheiding", nav_sicherheit:"Veiligheid",
       nav_einkaufen:"Boodschappen", nav_karte:"Kaart", nav_ausfluege:"Uitjes", nav_steuer:"Toeristenbelasting",
       nav_checkout:"Check-out", nav_kontakt:"Contact",
-      s1_title:"Aankomst & Toegang", s1_intro:"[Routebeschrijving invullen, bijv. via de A1, laatste 500 m, bijzonderheden oprit]",
-      s1_fl_adresse:"Adres", s1_fl_auto:"Aankomst met de auto", s1_ph_auto:"[Aanwijzingen invullen]",
-      s1_fl_oepnv:"Aankomst met openbaar vervoer", s1_ph_oepnv:"[Buslijn / halte invullen]",
-      s1_fl_code:"Toegangscode / sleutelkluis", s1_ph_code:"[Code invullen]",
-      s1_fl_ansprechpartner:"Contactpersoon bij aankomst", s1_ph_ansprechpartner:"[Naam / telefoonnummer invullen]",
+      s1_title:"Aankomst & Toegang", s1_intro:"De bungalow ligt aan het einde van een doodlopende straat aan de linkerkant. Hij staat iets naar achteren, rechts naast huisnummer 46. Je kunt de auto voor het huis parkeren. Kom je met de bus, dan kun je goed lijn 8 nemen tot Wolbeck Schulzentrum en van daaruit 5 minuten lopen naar de accommodatie. De sleutelkluis bevindt zich links naast de voordeur.",
+      s1_fl_adresse:"Adres", s1_fl_auto:"Aankomst met de auto", s1_ph_auto:"Parkeergelegenheid is direct bij de accommodatie of in de directe omgeving aanwezig.",
+      s1_fl_oepnv:"Aankomst met openbaar vervoer", s1_ph_oepnv:"Buslijn 8 tot Wolbeck Schulzentrum",
+      s1_fl_code:"Toegangscode / sleutelkluis", s1_ph_code:"De pincode wordt de avond voor aankomst doorgestuurd.",
+      s1_fl_ansprechpartner:"Contactpersoon bij aankomst", s1_ph_ansprechpartner:"Vera, +49 170 5624253",
       s2_title:"Informatie over de accommodatie",
       s2_intro:"De Kleine Bungalow biedt 70 m² voor maximaal 4 personen: slaapkamer, woonkamer, keuken, badkamer en een eigen tuintoegang via de garage.",
-      s2_fl_checkin:"Check-in", s2_ph_checkin:"[vanaf 15:00 uur invullen]",
-      s2_fl_checkout:"Check-out", s2_ph_checkout:"[tot 11:00 uur invullen]",
-      s2_fl_schluessel:"Sleutel", s2_ph_schluessel:"[Overdracht / sleutelkluis invullen]",
-      s2_fl_parken:"Parkeren", s2_ph_parken:"[Parkeerinfo invullen]",
-      s2_fl_haustiere:"Huisdieren", s2_ph_haustiere:"[Beleid invullen]",
+      s2_fl_checkin:"Check-in", s2_ph_checkin:"vanaf 16:00 uur",
+      s2_fl_checkout:"Check-out", s2_ph_checkout:"tot 11:00 uur",
+      s2_fl_schluessel:"Sleutel", s2_ph_schluessel:"De sleutelkluis bevindt zich links naast de voordeur",
+      s2_fl_parken:"Parkeren", s2_ph_parken:"Parkeergelegenheid is direct bij de accommodatie of in de directe omgeving aanwezig.",
+      s2_fl_haustiere:"Huisdieren", s2_ph_haustiere:"niet toegestaan",
       s2_fl_rauchen:"Roken", s2_ph_rauchen:"niet toegestaan",
-      s2_fl_ruhezeiten:"Rusttijden", s2_ph_ruhezeiten:"[bijv. vanaf 22:00 uur invullen]",
+      s2_fl_ruhezeiten:"Rusttijden", s2_ph_ruhezeiten:"van 22:00 tot 7:00 uur",
       s2_fl_kinder:"Reisbedje & kinderstoel", s2_ph_kinder:"gratis, op aanvraag",
-      s2_note:"Keuken en badkamer grenzen aan ons woonhuis – af en toe kindergeluiden horen erbij. We hopen dat je van de gezellige sfeer geniet.",
+      s2_note:"De bungalow grenst aan ons woonhuis – af en toe kindergeluiden horen erbij. We hopen dat je van de gezellige sfeer geniet.",
+      s2_sketch_caption:"De Kleine Bungalow – ontwerpschets",
       s3_title:"Mobiliteit (Bus, Fietsverhuur, Parkeren)",
       s3_intro:"Zo kom je tijdens je verblijf gemakkelijk van A naar B:",
       s3_fl_bus:"Busverbinding", s3_ph_bus:"[Buslijn, halte & frequentie invullen]",
@@ -789,7 +818,7 @@ schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Hei
   const editToggle = document.getElementById('editToggle');
   const saveBtn = document.getElementById('saveBtn');
   const editToolbar = document.querySelector('.edit-toolbar');
-  const editableSelector = 'main h2, main h3, main p, main li span, main li a, main details summary, main .content p, main .content li, main .callout p, main .callout h3, main .step-body > p, main .note-box, footer';
+  const editableSelector = 'main h2, main h3, main p, main li span, main li a, main details summary, main .content p, main .content li, main .callout p, main .callout h3, main .step-body > p, main .note-box, main .sketch-illustration .caption, footer';
   let editing = false;
 
   if (new URLSearchParams(window.location.search).get('edit') === '1') {
