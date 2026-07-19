@@ -250,7 +250,6 @@
         <li><span data-i18n="s1_fl_auto">Anreise mit dem Auto</span><span data-i18n="s1_ph_auto">Parkmöglichkeiten befinden sich direkt an der Unterkunft bzw. in der näheren Umgebung.</span></li>
         <li><span data-i18n="s1_fl_oepnv">Anreise mit ÖPNV</span><span data-i18n="s1_ph_oepnv">Linie 8 bis Wolbeck Schulzentrum</span></li>
         <li><span data-i18n="s1_fl_code">Zugangscode / Schlüsselbox</span><span data-i18n="s1_ph_code">Der Pin wird am Abend vor der Anreise übermittelt.</span></li>
-        <li><span data-i18n="s1_fl_ansprechpartner">Ansprechpartner bei Anreise</span><span data-i18n="s1_ph_ansprechpartner">Vera</span></li>
       </ul>
     </div>
   </div>
@@ -327,7 +326,7 @@
             <li data-i18n="s5_d2_li2">Die App waipu.tv auswählen und mit der OK-Taste (runde Taste in der Mitte) öffnen</li>
             <li data-i18n="s5_d2_li3">Falls die App nicht direkt sichtbar ist: ganz rechts zu „Alle Apps" gehen und dort waipu.tv auswählen</li>
             <li data-i18n="s5_d2_li4">In der waipu.tv App auf „Live TV" gehen</li>
-            <li data-i18n="s5_d2_li5">Sender auswählen (z. B. ARD, ZDF, RTL etc.) und mit OK starten</li>
+            <li data-i18n="s5_d2_li5">Sender auswählen (z. B. ARD, ZDF, RTL etc.) und mit OK starten. Sender wechseln mit der runden Taste nach rechts und links.</li>
           </ol>
         </div>
       </details>
@@ -354,7 +353,7 @@
       <details>
         <summary data-i18n="s6_d1_summary">Heizung </summary>
         <div class="content">
-          <p data-i18n="s6_d1_text">Bitte gehe verantwortungsvoll mit Wasser, Strom und Heizung um. Lüfte effektiv (mindestens 2× täglich stoßlüften, also Fenster ganz öffnen) und schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Heizen geschlossen halten.</p>
+          <p data-i18n="s6_d1_text">Bitte gehe verantwortungsvoll mit Wasser, Strom und Heizung um. Die Temperatur kann über die Thermostate verstellt werden. Lüfte effektiv (mindestens 2× täglich stoßlüften, also Fenster ganz öffnen) und schalte Licht und Geräte aus, wenn sie nicht benötigt werden. Fenster beim Heizen geschlossen halten.</p>
         </div>
       </details>
       <details>
@@ -446,6 +445,7 @@
         <button class="tag-btn" data-target="radfahrer" data-i18n="tag_radfahrer">Radfahrer</button>
         <button class="tag-btn" data-target="entspannung" data-i18n="tag_entspannung">Entspannung</button>
         <button class="tag-btn" data-target="kultur" data-i18n="tag_kultur">Kultur</button>
+        <button class="tag-btn" data-target="wassersport" data-i18n="tag_wassersport">Wassersport</button>
       </div>
       <div class="activity-panel active" id="paare">
         <ul>
@@ -474,7 +474,7 @@
         <ul>
           <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/radtouren-bis-35-km" target="_blank" rel="noopener">Radtouren bis 35 km ab Münster</a></li>
           <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/fahrradverleih" target="_blank" rel="noopener">Fahrradverleih &amp; Radstationen in Münster</a></li>
-          <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/karten-und-infomaterial" target="_blank" rel="noopener">Karten &amp; Infomaterial Fahrradstadt Münster</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt" target="_blank" rel="noopener">Fahrradstadt | Stadt Münster</a></li>
         </ul>
       </div>
       <div class="activity-panel" id="entspannung">
@@ -486,6 +486,12 @@
       <div class="activity-panel" id="kultur">
         <ul>
           <li><a href="https://www.stadt-muenster.de/tourismus/kunst-kultur/museen" target="_blank" rel="noopener">Museen in Münster</a></li>
+        </ul>
+      </div>
+      <div class="activity-panel" id="wassersport">
+        <ul>
+          <li><a href="https://www.pleistermuehle.de/" target="_blank" rel="noopener">Landgasthof Pleistermühle – Terrasse an der Werse</a></li>
+          <li><a href="https://www.stadt-muenster.de/tourismus/sehenswertes/aasee" target="_blank" rel="noopener">Aasee – Wassersport &amp; Bootsverleih</a></li>
         </ul>
       </div>
     </div>
@@ -542,6 +548,7 @@
       <h2 data-i18n="s14_title">Kontakt &amp; Notfälle</h2>
       <ul class="fact-list">
         <li><span data-i18n="s14_fl_email">E-Mail</span><span><a href="mailto:info.haus.wagner@gmx.de">info.haus.wagner@gmx.de</a></span></li>
+        <li><span data-i18n="s14_fl_app">Buchungsapp</span><span data-i18n="s14_ph_app">Am schnellsten erreichst du uns über die Nachrichtenfunktion deiner Buchungsapp (z. B. Airbnb oder Booking.com)</span></li>
         <li><span data-i18n="s14_fl_adresse">Adresse</span><span>Hamsens Busch 46a, 48167 Münster</span></li>
       </ul>
       <p style="margin-top:14px;" data-i18n="s14_closing">Wir wünschen dir einen erholsamen Aufenthalt im Kleinen Bungalow!</p>
@@ -614,7 +621,6 @@
       s1_fl_adresse:"Address", s1_fl_auto:"Arrival by car", s1_ph_auto:"Parking is available directly at the accommodation or nearby.",
       s1_fl_oepnv:"Arrival by public transport", s1_ph_oepnv:"Bus line 8 to Wolbeck Schulzentrum",
       s1_fl_code:"Access code / key box", s1_ph_code:"The PIN will be sent to you the evening before arrival.",
-      s1_fl_ansprechpartner:"Contact person on arrival", s1_ph_ansprechpartner:"Vera",
       s2_title:"Accommodation Information",
       s2_intro:"The Kleiner Bungalow offers 70 m² for up to 4 guests: bedroom, living room, kitchen, bathroom, and your own garden access via the garage.",
       s2_fl_checkin:"Check-in", s2_ph_checkin:"from 4:00 PM",
@@ -645,11 +651,11 @@
       s5_d2_li2:"Select the waipu.tv app and open it with the OK button (round button in the middle)",
       s5_d2_li3:"If the app isn't visible right away: go all the way right to \u201cAll Apps\u201d and select waipu.tv there",
       s5_d2_li4:"In the waipu.tv app, go to \u201cLive TV\u201d",
-      s5_d2_li5:"Select a channel (e.g. ARD, ZDF, RTL) and start it with OK",
+      s5_d2_li5:"Select a channel (e.g. ARD, ZDF, RTL) and start it with OK. Switch channels using the round button, left and right.",
       s5_d3_summary:"Streaming (Netflix, YouTube & more)", s5_d3_text:"Press the Home button → select the app → sign in with your own account",
       s5_d4_summary:"Volume & turning off", s5_d4_text:"Volume buttons +/–, turn off via the power button",
       s6_title:"House Facilities", s6_intro:"Quick instructions for heating, hot water and kitchen appliances:",
-      s6_d1_summary:"Heating & thermostat", s6_d1_text:"Please use water, electricity and heating responsibly. Air out the rooms effectively (open windows fully at least twice a day) and turn off lights and appliances when not in use. Keep windows closed while heating.",
+      s6_d1_summary:"Heating & thermostat", s6_d1_text:"Please use water, electricity and heating responsibly. The temperature can be adjusted using the thermostats. Air out the rooms effectively (open windows fully at least twice a day) and turn off lights and appliances when not in use. Keep windows closed while heating.",
       s6_d2_summary:"Dishwasher", s6_d2_text:"Dishwasher tabs and rinse aid are located under the sink.",
       s6_d3_summary:"Coffee machine", s6_d3_text:"There's a Nespresso machine and a filter coffee machine in the bottom drawer under the oven. Capsules and ground coffee are in the drawer under the oven.",
       s6_d4_summary:"Washing machine & iron", s6_d4_text:"The washing machine is currently out of order, unfortunately. You'll find an iron in the cabinet next to the sink, and the ironing board to the left of the washing machine.",
@@ -675,7 +681,7 @@
       s11_title:"Excursion Tips Nearby",
       s11_intro:"The famous \u201c100 Castles Route\u201d passes just 100 metres from the bungalow – here are a few ideas for every taste. For more inspiration, check the official <a href=\"https://www.stadt-muenster.de/ms/tourismus/epaper-explore-muenster2026/\" target=\"_blank\" rel=\"noopener\">Explore Münster magazine with 75 tips</a>.",
       tag_paare:"Couples", tag_familien:"Families", tag_wanderer:"Hikers", tag_radfahrer:"Cyclists",
-      tag_entspannung:"Relaxation", tag_kultur:"Culture",
+      tag_entspannung:"Relaxation", tag_kultur:"Culture", tag_wassersport:"Water Sports",
       s12_title:"Accommodation Tax",
       s12_intro:"The City of Münster levies an accommodation tax of <strong>4.5% of the overnight rate</strong>. It is settled on site and is not included in the listed room rates.",
       s12_d1_summary:"Who pays the tax?",
@@ -692,6 +698,7 @@
       s13_callout_title:"How was your stay?",
       s13_callout_text:'We always appreciate your feedback and an honest review – feel free to message us directly or leave a note on <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.',
       s14_title:"Contact & Emergencies", s14_fl_email:"Email",
+      s14_fl_app:"Booking app", s14_ph_app:"The fastest way to reach us is via the messaging function in your booking app (e.g. Airbnb or Booking.com)",
       s14_fl_adresse:"Address",
       s14_closing:"We wish you a relaxing stay at the Kleiner Bungalow!",
       footer_text:"Kleiner Bungalow – Guest house in Münster-Wolbeck"
@@ -707,7 +714,6 @@
       s1_fl_adresse:"Adres", s1_fl_auto:"Aankomst met de auto", s1_ph_auto:"Parkeergelegenheid is direct bij de accommodatie of in de directe omgeving aanwezig.",
       s1_fl_oepnv:"Aankomst met openbaar vervoer", s1_ph_oepnv:"Buslijn 8 tot Wolbeck Schulzentrum",
       s1_fl_code:"Toegangscode / sleutelkluis", s1_ph_code:"De pincode wordt de avond voor aankomst doorgestuurd.",
-      s1_fl_ansprechpartner:"Contactpersoon bij aankomst", s1_ph_ansprechpartner:"Vera",
       s2_title:"Informatie over de accommodatie",
       s2_intro:"De Kleine Bungalow biedt 70 m² voor maximaal 4 personen: slaapkamer, woonkamer, keuken, badkamer en een eigen tuintoegang via de garage.",
       s2_fl_checkin:"Check-in", s2_ph_checkin:"vanaf 16:00 uur",
@@ -738,11 +744,11 @@
       s5_d2_li2:"Selecteer de app waipu.tv en open deze met de OK-knop (ronde knop in het midden)",
       s5_d2_li3:"Is de app niet direct zichtbaar? Ga helemaal rechts naar \u201cAlle apps\u201d en selecteer daar waipu.tv",
       s5_d2_li4:"Ga in de waipu.tv app naar \u201cLive TV\u201d",
-      s5_d2_li5:"Kies een zender (bijv. ARD, ZDF, RTL) en start met OK",
+      s5_d2_li5:"Kies een zender (bijv. ARD, ZDF, RTL) en start met OK. Wissel van zender met de ronde knop naar links en rechts.",
       s5_d3_summary:"Streaming (Netflix, YouTube & meer)", s5_d3_text:"Home-knop indrukken → app selecteren → inloggen met eigen account",
       s5_d4_summary:"Volume & uitschakelen", s5_d4_text:"Volumeknoppen +/–, uitschakelen via de aan/uit-knop",
       s6_title:"Huistechniek", s6_intro:"Korte bedieningsinstructies voor verwarming, warm water en keukenapparatuur:",
-      s6_d1_summary:"Verwarming & thermostaat", s6_d1_text:"Ga verantwoord om met water, stroom en verwarming. Lucht effectief (minstens 2× per dag kort en krachtig luchten, dus ramen volledig open) en schakel licht en apparaten uit wanneer ze niet nodig zijn. Houd ramen dicht tijdens het verwarmen.",
+      s6_d1_summary:"Verwarming & thermostaat", s6_d1_text:"Ga verantwoord om met water, stroom en verwarming. De temperatuur kan worden aangepast via de thermostaten. Lucht effectief (minstens 2× per dag kort en krachtig luchten, dus ramen volledig open) en schakel licht en apparaten uit wanneer ze niet nodig zijn. Houd ramen dicht tijdens het verwarmen.",
       s6_d2_summary:"Vaatwasser", s6_d2_text:"Vaatwastabletten en glansspoelmiddel vind je onder de gootsteen.",
       s6_d3_summary:"Koffiezetapparaat", s6_d3_text:"Er is een Nespresso-apparaat en een filterkoffiezetapparaat in de onderste lade onder de oven. Capsules en gemalen koffie vind je in de lade onder de oven.",
       s6_d4_summary:"Wasmachine & strijkijzer", s6_d4_text:"De wasmachine is momenteel helaas defect. Een strijkijzer vind je in de kast naast de wastafel, de strijkplank links naast de wasmachine.",
@@ -768,7 +774,7 @@
       s11_title:"Uitjes in de omgeving",
       s11_intro:"De beroemde \u2018100-kastelenroute\u2019 loopt op maar 100 meter van de bungalow – hier een paar ideeën voor elk wat wils. Meer inspiratie vind je in het officiële <a href=\"https://www.stadt-muenster.de/ms/tourismus/epaper-explore-muenster2026/\" target=\"_blank\" rel=\"noopener\">Explore-Münster-magazine met 75 tips</a>.",
       tag_paare:"Stellen", tag_familien:"Gezinnen", tag_wanderer:"Wandelaars", tag_radfahrer:"Fietsers",
-      tag_entspannung:"Ontspanning", tag_kultur:"Cultuur",
+      tag_entspannung:"Ontspanning", tag_kultur:"Cultuur", tag_wassersport:"Watersport",
       s12_title:"Toeristenbelasting",
       s12_intro:"De stad Münster heft een toeristenbelasting van <strong>4,5% van de overnachtingsprijs</strong>. Deze wordt ter plaatse afgerekend en is niet inbegrepen in de vermelde kamerprijzen.",
       s12_d1_summary:"Wie betaalt de belasting?",
@@ -785,6 +791,7 @@
       s13_callout_title:"Hoe was je verblijf?",
       s13_callout_text:'We stellen je feedback en een eerlijke beoordeling altijd op prijs – stuur ons gerust een bericht of laat een berichtje achter op <a href="https://www.instagram.com/kleiner.bungalow" target="_blank" rel="noopener">Instagram</a>.',
       s14_title:"Contact & noodgevallen", s14_fl_email:"E-mail",
+      s14_fl_app:"Boekingsapp", s14_ph_app:"Je bereikt ons het snelst via de berichtenfunctie van je boekingsapp (bijv. Airbnb of Booking.com)",
       s14_fl_adresse:"Adres",
       s14_closing:"We wensen je een heerlijk verblijf in de Kleine Bungalow!",
       footer_text:"Kleine Bungalow – Gastenverblijf in Münster-Wolbeck"
