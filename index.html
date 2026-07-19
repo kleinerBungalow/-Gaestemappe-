@@ -285,6 +285,7 @@
       <p data-i18n="s3_intro">So kommst du während deines Aufenthalts bequem von A nach B:</p>
       <ul class="fact-list">
         <li><span data-i18n="s3_fl_bus">Busverbindung</span><span><a href="https://www.stadtwerke-muenster.de/unterwegs/fahrplan/fahrplaene-zum-herunterladen/aushangfahrpl%C3%A4ne/aushangfahrplan?route=08&direction=H" target="_blank" rel="noopener">Linie 8 bis Wolbeck Schulzentrum (Fahrplan)</a></span></li>
+        <li><span data-i18n="s3_fl_haltestelle">Nächste Bushaltestelle</span><span><a href="https://www.google.com/maps/search/?api=1&query=51.9161,7.7176" target="_blank" rel="noopener">Wolbeck Schulzentrum (Google Maps)</a></span></li>
         <li><span data-i18n="s3_fl_rad">Fahrradverleih</span><span><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/fahrradverleih" target="_blank" rel="noopener">Fahrradverleih-Stationen in Münster</a></span></li>
         <li><span data-i18n="s3_fl_park">Parkmöglichkeit</span><span><a href="https://www.stadt-muenster.de/rathaus/smartes-muenster/parkleitsystem" target="_blank" rel="noopener">Parkleitsystem Münster</a></span></li>
         <li><span data-i18n="s3_fl_taxi">Taxi / Fahrdienst</span><span data-i18n="s3_ph_taxi">0251 60011</span></li>
@@ -544,8 +545,18 @@
         <li><span data-i18n="s14_fl_adresse">Adresse</span><span>Hamsens Busch 46a, 48167 Münster</span></li>
       </ul>
       <p style="margin-top:14px;" data-i18n="s14_closing">Wir wünschen dir einen erholsamen Aufenthalt im Kleinen Bungalow!</p>
-      <div class="note-box" style="margin-top:24px;">
+    </div>
+  </div>
 
+</main>
+
+<footer data-i18n="footer_text">Kleiner Bungalow – Gästehaus in Münster-Wolbeck</footer>
+
+<div class="edit-hint">Bearbeitungsmodus aktiv – klicke auf einen Text, um ihn zu ändern.</div>
+<div class="edit-toolbar">
+  <button id="editToggle" class="edit-btn">Seite bearbeiten</button>
+  <button id="saveBtn" class="edit-btn">Speichern &amp; herunterladen</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -562,15 +573,15 @@
   });
 
   /* ---------- Interaktive Karte ---------- */
-  const map = L.map('map').setView([51.9186, 7.7269], 13);
+  const map = L.map('map').setView([51.9161, 7.7176], 14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap-Mitwirkende',
     maxZoom: 18
   }).addTo(map);
 
   const pois = [
-    { lat: 51.9186, lng: 7.7269, title: 'Kleiner Bungalow', desc: { de:'Dein Zuhause auf Zeit', en:'Your home away from home', nl:'Jouw tijdelijke thuis' } },
-    { lat: 51.9245, lng: 7.7420, title: 'Wolbecker Tiergarten', desc: { de:'Naherholungsgebiet mit Wegen entlang der Angel', en:'Local recreation area with paths along the Angel river', nl:'Recreatiegebied met paden langs de rivier de Angel' } },
+    { lat: 51.9161, lng: 7.7176, title: 'Kleiner Bungalow', desc: { de:'Dein Zuhause auf Zeit', en:'Your home away from home', nl:'Jouw tijdelijke thuis' } },
+    { lat: 51.91453, lng: 7.73440, title: 'Wolbecker Tiergarten', desc: { de:'Naherholungsgebiet mit Wegen entlang der Angel', en:'Local recreation area with paths along the Angel river', nl:'Recreatiegebied met paden langs de rivier de Angel' } },
     { lat: 51.9455, lng: 7.5987, title: 'Aasee', desc: { de:'Münsters beliebter Freizeitsee mit Uferpromenade', en:"Münster's popular recreational lake with a lakeside promenade", nl:'Het populaire recreatiemeer van Münster met wandelpromenade' } },
     { lat: 51.9645, lng: 7.6395, title: 'Stadthafen & Kreativkai', desc: { de:'Hafenviertel mit Cafés, Bars und Wasserblick', en:'Harbour district with cafés, bars and water views', nl:'Havenwijk met cafés, bars en uitzicht op het water' } },
     { lat: 51.9625, lng: 7.6256, title: 'Münster Altstadt & Dom', desc: { de:"Münsters historische Altstadt & Dom", en:"Münster's historic old town & cathedral", nl:'Historische binnenstad & kathedraal van Münster' } }
@@ -619,6 +630,7 @@
       s3_title:"Getting Around (Bus Connections, Bike Rental, Parking)",
       s3_intro:"Here's how to get around comfortably during your stay:",
       s3_fl_bus:"Bus connection", s3_ph_bus:"Line 8 to Wolbeck Schulzentrum",
+      s3_fl_haltestelle:"Nearest bus stop",
       s3_fl_rad:"Bike rental", s3_ph_rad:"[Insert rental station & distance]",
       s3_fl_park:"Parking", s3_ph_park:"[Insert parking option]",
       s3_fl_taxi:"Taxi / ride service", s3_ph_taxi:"0251 60011",
@@ -711,6 +723,7 @@
       s3_title:"Mobiliteit (Bus, Fietsverhuur, Parkeren)",
       s3_intro:"Zo kom je tijdens je verblijf gemakkelijk van A naar B:",
       s3_fl_bus:"Busverbinding", s3_ph_bus:"Lijn 8 tot Wolbeck Schulzentrum",
+      s3_fl_haltestelle:"Dichtstbijzijnde bushalte",
       s3_fl_rad:"Fietsverhuur", s3_ph_rad:"[Verhuurstation & afstand invullen]",
       s3_fl_park:"Parkeermogelijkheid", s3_ph_park:"[Parkeermogelijkheid invullen]",
       s3_fl_taxi:"Taxi / ritservice", s3_ph_taxi:"0251 60011",
