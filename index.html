@@ -44,12 +44,6 @@
       url('images/tiergarten-bruecke.jpeg') center/cover no-repeat;
     color:#fff; padding:56px 24px 40px;
   }
-  .brand-mark{
-    position:absolute; top:24px; right:24px; width:64px; height:64px;
-    background:var(--linen); border-radius:50%; overflow:hidden;
-    box-shadow:0 4px 18px rgba(0,0,0,.3); border:2px solid rgba(255,255,255,.6);
-  }
-  .brand-mark img{width:100%; height:100%; object-fit:cover; object-position:38% 42%; transform:scale(1.9);}
   .sketch-illustration{
     margin-top:32px; border:1px solid var(--line); background:#fff; padding:10px;
     max-width:340px;
@@ -210,7 +204,6 @@
 <body>
 
 <header>
-  <div class="brand-mark"><img src="images/skizze.jpg" alt="Architekturskizze Kleiner Bungalow"></div>
   <div class="header-inner">
     <div class="eyebrow" data-i18n="header_eyebrow">Digitale Gästemappe</div>
     <h1 data-i18n="header_title">Willkommen im Kleinen Bungalow</h1>
@@ -266,6 +259,8 @@
     <div class="step-num">2</div>
     <div class="step-body">
       <h2 data-i18n="s2_title">Informationen zur Unterkunft</h2>
+      <p data-i18n="s2_intro">Willkommen im historischen Stadtteil Wolbeck mit ländlichem Charme. Auf rund 70&nbsp;m² bietet dir die Unterkunft Platz für bis zu vier Personen und verfügt über ein separates Schlafzimmer, ein helles Wohnzimmer mit Schlafbereich, eine voll ausgestattete Küche, ein modernes Bad sowie einen eigenen kleinen Gartenbereich.</p>
+      <p data-i18n="s2_intro2">Der Stadtteil ist bekannt für den Drostenhof, den Wald „Wolbecker Tiergarten", traditionelle Gastronomie sowie zahlreiche Rad- und Wanderwege entlang der Werse und durch das Münsterland. Gleichzeitig bist du in 20&nbsp;Minuten in der Münsteraner Innenstadt.</p>
       <ul class="fact-list">
         <li><span data-i18n="s2_fl_schluessel">Schlüssel</span><span data-i18n="s2_ph_schluessel">Die Schlüsselbox befindet sich links neben der Haustür</span></li>
         <li><span data-i18n="s2_fl_garten">Garten</span><span data-i18n="s2_ph_garten">Zugang durch die Garage</span></li>
@@ -354,7 +349,6 @@
     <div class="step-num">6</div>
     <div class="step-body">
       <h2 data-i18n="s6_title">Haustechnik</h2>
-      <p data-i18n="s6_intro">Kurze Bedienhinweise für Heizung, Warmwasser und Küchengeräte:</p>
       <details>
         <summary data-i18n="s6_d1_summary">Heizung</summary>
         <div class="content">
@@ -652,6 +646,8 @@
       s1_fl_code:"Access code / key box", s1_ph_code:"The PIN will be sent to you the evening before arrival.",
       s1_fl_checkin:"Check-in", s1_ph_checkin:"from 4:00 PM",
       s2_title:"Accommodation Information",
+      s2_intro:"Welcome to the historic district of Wolbeck with its rural charm. With around 70 m², the accommodation offers space for up to four guests and features a separate bedroom, a bright living room with a sleeping area, a fully equipped kitchen, a modern bathroom, and your own small garden area.",
+      s2_intro2:"The district is known for the Drostenhof manor, the \u201cWolbecker Tiergarten\u201d forest, traditional restaurants, and numerous cycling and hiking trails along the Werse river and through the Münsterland. At the same time, you're just 20 minutes from Münster's city centre.",
       s2_fl_schluessel:"Key", s2_ph_schluessel:"The key box is located to the left of the front door",
       s2_fl_garten:"Garden", s2_ph_garten:"Access via the garage",
       s2_fl_haustiere:"Pets", s2_ph_haustiere:"not permitted",
@@ -681,7 +677,7 @@
       s5_d2_li5:"Select a channel (e.g. ARD, ZDF, RTL) and start it with OK. Switch channels using the round button, left and right.",
       s5_d3_summary:"Streaming (Netflix, YouTube & more)", s5_d3_text:"Press the Home button → select the app → sign in with your own account",
       s5_d4_summary:"Volume & turning off", s5_d4_text:"Volume buttons +/–, turn off via the power button",
-      s6_title:"House Facilities", s6_intro:"Quick instructions for heating, hot water and kitchen appliances:",
+      s6_title:"House Facilities",
       s6_d1_summary:"Heating & thermostat", s6_d1_text:"Please use water, electricity and heating responsibly. The temperature can be adjusted using the thermostats. Air out the rooms effectively (open windows fully at least twice a day) and turn off lights and appliances when not in use. Keep windows closed while heating.",
       s6_d2_summary:"Dishwasher", s6_d2_text:"Dishwasher tabs and rinse aid are located under the sink.",
       s6_d3_summary:"Coffee machine", s6_d3_text:"There's a Nespresso machine and a filter coffee machine in the bottom drawer under the oven. Capsules and ground coffee are in the drawer under the oven.",
@@ -745,6 +741,8 @@
       s1_fl_code:"Toegangscode / sleutelkluis", s1_ph_code:"De pincode wordt de avond voor aankomst doorgestuurd.",
       s1_fl_checkin:"Check-in", s1_ph_checkin:"vanaf 16:00 uur",
       s2_title:"Informatie over de accommodatie",
+      s2_intro:"Welkom in de historische wijk Wolbeck met landelijke charme. Op ongeveer 70 m² biedt de accommodatie plaats voor maximaal vier personen en beschikt over een aparte slaapkamer, een lichte woonkamer met slaapgedeelte, een volledig uitgeruste keuken, een moderne badkamer en een eigen kleine tuin.",
+      s2_intro2:"De wijk is bekend voor het landhuis Drostenhof, het bos \u201eWolbecker Tiergarten\u201c, traditionele horeca en talrijke fiets- en wandelpaden langs de Werse en door het Münsterland. Tegelijkertijd ben je binnen 20 minuten in het centrum van Münster.",
       s2_fl_schluessel:"Sleutel", s2_ph_schluessel:"De sleutelkluis bevindt zich links naast de voordeur",
       s2_fl_garten:"Tuin", s2_ph_garten:"Toegang via de garage",
       s2_fl_haustiere:"Huisdieren", s2_ph_haustiere:"niet toegestaan",
@@ -774,7 +772,7 @@
       s5_d2_li5:"Kies een zender (bijv. ARD, ZDF, RTL) en start met OK. Wissel van zender met de ronde knop naar links en rechts.",
       s5_d3_summary:"Streaming (Netflix, YouTube & meer)", s5_d3_text:"Home-knop indrukken → app selecteren → inloggen met eigen account",
       s5_d4_summary:"Volume & uitschakelen", s5_d4_text:"Volumeknoppen +/–, uitschakelen via de aan/uit-knop",
-      s6_title:"Huistechniek", s6_intro:"Korte bedieningsinstructies voor verwarming, warm water en keukenapparatuur:",
+      s6_title:"Huistechniek",
       s6_d1_summary:"Verwarming & thermostaat", s6_d1_text:"Ga verantwoord om met water, stroom en verwarming. De temperatuur kan worden aangepast via de thermostaten. Lucht effectief (minstens 2× per dag kort en krachtig luchten, dus ramen volledig open) en schakel licht en apparaten uit wanneer ze niet nodig zijn. Houd ramen dicht tijdens het verwarmen.",
       s6_d2_summary:"Vaatwasser", s6_d2_text:"Vaatwastabletten en glansspoelmiddel vind je onder de gootsteen.",
       s6_d3_summary:"Koffiezetapparaat", s6_d3_text:"Er is een Nespresso-apparaat en een filterkoffiezetapparaat in de onderste lade onder de oven. Capsules en gemalen koffie vind je in de lade onder de oven.",
