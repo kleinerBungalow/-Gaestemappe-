@@ -53,6 +53,27 @@
     font-size:.72rem; letter-spacing:.05em; color:#8a8a6e; text-align:center;
     margin-top:8px; text-transform:uppercase;
   }
+
+  /* Bildergalerie */
+  .gallery{margin-top:28px;}
+  .gallery-track{
+    display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:2px;
+  }
+  .gallery-track::-webkit-scrollbar{display:none;}
+  .gallery-slide{
+    flex:0 0 78%; max-width:320px; aspect-ratio:4/3; scroll-snap-align:center;
+    border-radius:2px; overflow:hidden; border:1px solid var(--line); background:#fff;
+  }
+  .gallery-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .gallery-slide.placeholder{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:var(--linen); border:1px dashed var(--line); color:#93998a;
+    font-size:.82rem; font-style:italic; padding:16px;
+  }
+  .gallery-dots{display:flex; justify-content:center; gap:6px; margin-top:10px;}
+  .gallery-dot{width:6px; height:6px; border-radius:50%; background:var(--line); transition:background .2s;}
+  .gallery-dot.active{background:var(--ochre);}
   .header-inner{max-width:820px; margin:0 auto;}
   .eyebrow{
     text-transform:uppercase; letter-spacing:.16em; font-size:.72rem; color:var(--sand);
@@ -270,9 +291,15 @@
         <li><span data-i18n="s2_fl_starter">Starterpaket</span><span data-i18n="s2_ph_starter">Etwas Kaffee, Tee und Gewürze sowie Duschgel, Shampoo und Seife sind für den Start vorhanden.</span></li>
         <li><span data-i18n="s2_fl_kiosk">Gästekiosk</span><span data-i18n="s2_ph_kiosk">In der Küche findest du eine kleine Auswahl an Getränken, Snacks und nützlichen Notfallartikeln für deinen Aufenthalt. Zahle einfach, was du möchtest.</span></li>
       </ul>
-      <div class="sketch-illustration">
-        <img src="images/skizze.jpg" alt="Architekturskizze des Kleinen Bungalow">
-        <div class="caption" data-i18n="s2_sketch_caption">Der Kleine Bungalow –</div>
+      <div class="gallery">
+        <div class="gallery-track" id="unterkunftGallery">
+          <div class="gallery-slide"><img src="images/skizze.jpg" alt="Architekturskizze des Kleinen Bungalow"></div>
+          <div class="gallery-slide placeholder" data-i18n="s2_gallery_ph1">Foto: Wohnzimmer</div>
+          <div class="gallery-slide placeholder" data-i18n="s2_gallery_ph2">Foto: Schlafzimmer</div>
+          <div class="gallery-slide placeholder" data-i18n="s2_gallery_ph3">Foto: Küche</div>
+          <div class="gallery-slide placeholder" data-i18n="s2_gallery_ph4">Foto: Bad</div>
+        </div>
+        <div class="gallery-dots" id="unterkunftGalleryDots"></div>
       </div>
     </div>
   </div>
@@ -283,8 +310,8 @@
       <h2 data-i18n="s3_title">Mobilität (Busverbindung, Fahrradverleih, Parkmöglichkeit)</h2>
       <p data-i18n="s3_intro">So kommst du während deines Aufenthalts bequem von A nach B:</p>
       <ul class="fact-list">
-        <li><span data-i18n="s3_fl_bus">Busverbindung</span><span><a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0007_afp_WOSZ_02_8_H.pdf" target="_blank" rel="noopener">Linie 8 Richtung Innenstadt</a> · <a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0029_afp_BLT_A_8_R.pdf" target="_blank" rel="noopener">Richtung Wolbeck</a></span></li>
-        <li><span data-i18n="s3_fl_nachtbus">Nachtbus</span><span><a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0029_afp_WOSZ_02_N85_H.pdf" target="_blank" rel="noopener">Linie N85 Richtung Innenstadt</a> · <a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0031_afp_BLT_A_N85_R.pdf" target="_blank" rel="noopener">Richtung Wolbeck</a></span></li>
+        <li><span data-i18n="s3_fl_bus">Busverbindung</span><span><a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0007_afp_WOSZ_02_8_H.pdf" target="_blank" rel="noopener">Linie 8 Richtung Innenstadt</a> · <a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0049_afp_WOSZ_01_8_R.pdf" target="_blank" rel="noopener">Richtung Wolbeck</a></span></li>
+        <li><span data-i18n="s3_fl_nachtbus">Nachtbus</span><span><a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0026_afp_WOSZ_02_N85_H.pdf" target="_blank" rel="noopener">Linie N85 Richtung Innenstadt</a> · <a href="https://www.stadtwerke-muenster.de/fahrplandaten/afp/0031_afp_BLT_A_N85_R.pdf" target="_blank" rel="noopener">Richtung Wolbeck</a></span></li>
         <li><span data-i18n="s3_fl_haltestelle">Nächste Bushaltestelle</span><span><a href="https://www.google.com/maps/search/?api=1&query=51.9161,7.7176" target="_blank" rel="noopener">Wolbeck Schulzentrum</a></span></li>
         <li><span data-i18n="s3_fl_rad">Fahrradverleih</span><span><a href="https://www.stadt-muenster.de/tourismus/fahrradstadt/fahrradverleih" target="_blank" rel="noopener">Fahrradverleih-Stationen in Münster</a></span></li>
         <li><span data-i18n="s3_fl_park">Parkmöglichkeit</span><span><a href="https://www.stadt-muenster.de/rathaus/smartes-muenster/parkleitsystem" target="_blank" rel="noopener">Parkmöglichkeiten in Münster</a></span></li>
@@ -337,6 +364,12 @@
         <summary data-i18n="s6_d3_summary">Kaffeemaschine</summary>
         <div class="content">
           <p data-i18n="s6_d3_text">Es gibt eine Nespresso-Maschine und eine Filtermaschine in der untersten Schublade unter dem Backofen. Kapseln und Pulver findest du in der Schublade unter dem Backofen.</p>
+        </div>
+      </details>
+      <details>
+        <summary data-i18n="s6_d3b_summary">Mikrowelle</summary>
+        <div class="content">
+          <p data-i18n="s6_d3b_text">Die Mikrowelle befindet sich im Schrank über dem Backofen.</p>
         </div>
       </details>
       <details>
@@ -571,6 +604,38 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+  /* ---------- Bildergalerie (Punkte-Navigation) ---------- */
+  (function(){
+    const track = document.getElementById('unterkunftGallery');
+    const dotsWrap = document.getElementById('unterkunftGalleryDots');
+    if (!track || !dotsWrap) return;
+    const slides = Array.from(track.children);
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const trackCenter = track.scrollLeft + track.clientWidth / 2;
+        let closest = 0, closestDist = Infinity;
+        slides.forEach((s, i) => {
+          const dist = Math.abs((s.offsetLeft + s.offsetWidth / 2) - trackCenter);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+        ticking = false;
+      });
+    });
+  })();
+
   /* ---------- Aktivitäten-Reiter ---------- */
   const tagButtons = document.querySelectorAll('.tag-btn');
   const panels = document.querySelectorAll('.activity-panel');
@@ -641,7 +706,7 @@
       s2_fl_textilien:"Linens", s2_ph_textilien:"Bed linen, towels and kitchen towels are provided",
       s2_fl_starter:"Starter kit", s2_ph_starter:"A bit of coffee, tea and spices as well as shower gel, shampoo and soap are provided to get you started.",
       s2_fl_kiosk:"Guest kiosk", s2_ph_kiosk:"In the kitchen you'll find a small selection of drinks, snacks and useful emergency items for your stay. Just pay what you'd like.",
-      s2_sketch_caption:"The Kleiner Bungalow –",
+      s2_gallery_ph1:"Photo: Living room", s2_gallery_ph2:"Photo: Bedroom", s2_gallery_ph3:"Photo: Kitchen", s2_gallery_ph4:"Photo: Bathroom",
       s3_title:"Getting Around (Bus Connections, Bike Rental, Parking)",
       s3_intro:"Here's how to get around comfortably during your stay:",
       s3_fl_bus:"Bus connection", s3_ph_bus:"Line 8 to Wolbeck Schulzentrum",
@@ -662,6 +727,7 @@
       s6_d1_summary:"Heating & thermostat", s6_d1_text:"The temperature can be adjusted using the thermostats. Keep windows closed while heating.",
       s6_d2_summary:"Dishwasher", s6_d2_text:"Dishwasher tabs and rinse aid are located under the sink.",
       s6_d3_summary:"Coffee machine", s6_d3_text:"There's a Nespresso machine and a filter coffee machine in the bottom drawer under the oven. Capsules and ground coffee are in the drawer under the oven.",
+      s6_d3b_summary:"Microwave", s6_d3b_text:"The microwave is in the cabinet above the oven.",
       s6_d4b_summary:"Washing machine", s6_d4b_text:"You're welcome to use the washing machine – as with the guest kiosk, we kindly ask you to leave a small contribution on trust to cover the extra cost. Detergent is in the cabinet next to the sink. It's a top-loading machine: the drum needs to be closed, add the detergent inside the top of the lid, then close the lid. It's an older model, so we can't guarantee the condition of your laundry. Alternatively, there's a <a href=\"https://maps.app.goo.gl/mE8aEtXXfMfKHyDd6?g_st=ic\" target=\"_blank\" rel=\"noopener\">launderette</a> towards the city centre.",
       s6_d4_summary:"Iron", s6_d4_text:"You'll find an iron in the cabinet next to the sink, and the ironing board by the door.",
       s7_title:"Waste Sorting", s7_fl_rest:"General waste", s7_ph_rest:"black bin",
@@ -738,7 +804,7 @@
       s2_fl_textilien:"Linnengoed", s2_ph_textilien:"Beddengoed, handdoeken en theedoeken zijn aanwezig",
       s2_fl_starter:"Starterpakket", s2_ph_starter:"Een beetje koffie, thee en kruiden, evenals douchegel, shampoo en zeep zijn aanwezig om mee te beginnen.",
       s2_fl_kiosk:"Gastenkiosk", s2_ph_kiosk:"In de keuken vind je een kleine selectie dranken, snacks en handige noodartikelen voor je verblijf. Betaal gewoon wat je wilt.",
-      s2_sketch_caption:"De Kleine Bungalow –",
+      s2_gallery_ph1:"Foto: Woonkamer", s2_gallery_ph2:"Foto: Slaapkamer", s2_gallery_ph3:"Foto: Keuken", s2_gallery_ph4:"Foto: Badkamer",
       s3_title:"Mobiliteit (Bus, Fietsverhuur, Parkeren)",
       s3_intro:"Zo kom je tijdens je verblijf gemakkelijk van A naar B:",
       s3_fl_bus:"Busverbinding", s3_ph_bus:"Lijn 8 tot Wolbeck Schulzentrum",
@@ -759,6 +825,7 @@
       s6_d1_summary:"Verwarming & thermostaat", s6_d1_text:"De temperatuur kan worden aangepast via de thermostaten. Houd ramen dicht tijdens het verwarmen.",
       s6_d2_summary:"Vaatwasser", s6_d2_text:"Vaatwastabletten en glansspoelmiddel vind je onder de gootsteen.",
       s6_d3_summary:"Koffiezetapparaat", s6_d3_text:"Er is een Nespresso-apparaat en een filterkoffiezetapparaat in de onderste lade onder de oven. Capsules en gemalen koffie vind je in de lade onder de oven.",
+      s6_d3b_summary:"Magnetron", s6_d3b_text:"De magnetron bevindt zich in de kast boven de oven.",
       s6_d4b_summary:"Wasmachine", s6_d4b_text:"Je mag de wasmachine gerust gebruiken – net als bij de gastenkiosk vragen we je om op vertrouwensbasis een kleine bijdrage achter te laten voor de extra kosten. Wasmiddel vind je in de kast naast de wastafel. Het is een bovenlader: de trommel moet gesloten zijn, het wasmiddel doe je bovenin de deksel, sluit daarna de deksel. Het is een ouder model, daarom kunnen we geen garantie geven op je was. Richting het centrum vind je ook een <a href=\"https://maps.app.goo.gl/mE8aEtXXfMfKHyDd6?g_st=ic\" target=\"_blank\" rel=\"noopener\">wasserette</a>.",
       s6_d4_summary:"Strijkijzer", s6_d4_text:"Een strijkijzer vind je in de kast naast de wastafel, de strijkplank bij de deur.",
       s7_title:"Afvalscheiding", s7_fl_rest:"Restafval", s7_ph_rest:"zwarte container",
@@ -854,7 +921,7 @@
   const editToggle = document.getElementById('editToggle');
   const saveBtn = document.getElementById('saveBtn');
   const editToolbar = document.querySelector('.edit-toolbar');
-  const editableSelector = 'main h2, main h3, main p, main li span, main li a, main details summary, main .content p, main .content li, main .callout p, main .callout h3, main .step-body > p, main .note-box, main .sketch-illustration .caption, footer';
+  const editableSelector = 'main h2, main h3, main p, main li span, main li a, main details summary, main .content p, main .content li, main .callout p, main .callout h3, main .step-body > p, main .note-box, main .gallery-slide.placeholder, footer';
   let editing = false;
 
   if (new URLSearchParams(window.location.search).get('edit') === '1') {
